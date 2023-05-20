@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Plan extends Model
 {
     use HasFactory;
-   
 
     protected $fillable = [
         'plan_name',
@@ -52,18 +50,9 @@ class Plan extends Model
         return $this->belongsTo(Drone::class);
     }
 
-    //plan has many farm
-    public function farms(){
-        return $this->belongsTo(Farm::class);
-    }
 
-    //plan has many locations
-    public function locations():HasMany{
-        return $this->hasMany(Location::class);
-    }
     public function maps():HasMany{
         return $this->hasMany(Map::class);
     }
-   
 }
 

@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('farms', function (Blueprint $table) {
             $table->id();
-            $table->string('farm_name');
-            $table->text('description');
-            $table->unsignedBigInteger('map_id')->unsigned();
-            $table->foreignId('user_id')->constrained(table:'users')->onDelete('cascade');
             $table->timestamps();
         });
     }
