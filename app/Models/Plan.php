@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Plan extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
    
-=======
 
     protected $fillable = [
         'plan_name',
@@ -42,5 +40,4 @@ class Plan extends Model
        return $plans;
     }
 
->>>>>>> d26ec0550adbb1876fc6a0dc62d3100e496a5507
 }
