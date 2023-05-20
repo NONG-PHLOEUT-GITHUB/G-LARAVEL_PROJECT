@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class DroneRequest extends FormRequest
 {
@@ -13,7 +15,10 @@ class DroneRequest extends FormRequest
     {
         return true;
     }
-
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,12 +28,12 @@ class DroneRequest extends FormRequest
     {
         return [
             
-            'drone_type' => "requiersd",
-            'drone_name' => "requiersd",
-            'battery' => "requiersd",
-            'playload_capacity' => "requiersd",
-            'user_id' => "requiersd",
-            'plan_id' => "requiersd",
+            'drone_type' => "required",
+            'drone_name' => "required",
+            'battery' => "required",
+            'playload_capacity' => "required",
+            'user_id' => "required",
+            'plan_id' => "required",
         ];
     }
 }

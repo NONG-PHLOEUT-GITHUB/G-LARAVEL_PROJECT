@@ -41,17 +41,17 @@ Route::delete('/farms/{id}',[FarmController::class, 'destroy']);
 
 // Route::resource('/drone',DroneController::class);
 Route::get('/drone',[DroneController::class, 'index']);
-// Route::get('/drone{id}',[DroneController::class, 'show']);
+Route::get('/drone/{id}',[DroneController::class, 'show']);
 Route::post('/drone',[DroneController::class, 'store']);
-Route::put('/drone{id}',[DroneController::class, 'update']);
-Route::delete('/drone{id}',[DroneController::class, 'destroy']);
+Route::put('/drone/{id}',[DroneController::class, 'update']);
+Route::delete('/drone/{id}',[DroneController::class, 'destroy']);
 
 // location
 Route::get('/location',[LocationController::class, 'index']);
 // Route::get('/drone{id}',[DroneController::class, 'show']);
 Route::post('/location',[LocationController::class, 'store']);
-Route::put('/location{id}',[LocationController::class, 'update']);
-Route::delete('/location{id}',[LocationController::class, 'destroy']);
+Route::put('/location/{id}',[LocationController::class, 'update']);
+Route::delete('/location/{id}',[LocationController::class, 'destroy']);
 
 
 
@@ -67,10 +67,11 @@ Route::delete('/location{id}',[LocationController::class, 'destroy']);
 
 
 
-
+Route::put('/plans/{id}',[PlanController::class,'update']);
 Route::post('/plans',[PlanController::class,'store']);
 Route::get('/plans',[PlanController::class,'index']);
 Route::get('/plans/{id}',[PlanController::class,'show']);
+
 // location //
 Route::post('/locations',[LocationController::class,'store']);
 Route::get('/locations',[LocationController::class,'index']);

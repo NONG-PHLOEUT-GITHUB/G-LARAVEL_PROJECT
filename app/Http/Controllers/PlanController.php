@@ -41,9 +41,10 @@ class PlanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $plans = Plan::store($request, $id);
+        return response()->json(['status' =>'success', 'plans' => $plans],202);
     }
 
     /**
@@ -51,6 +52,10 @@ class PlanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $plans = Plan::find($id);
+        $plans->delete();
+
+        return response()->json(['delete success'=>true, 'data'=>$plans],200);
+        
     }
 }
