@@ -25,6 +25,9 @@ return new class extends Migration
             $table->unsignedBigInteger('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
 
+            $table->unsignedBigInteger('map_id')->unsigned();
+            $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
