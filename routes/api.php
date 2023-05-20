@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DroneController;
+use App\Http\Controllers\FarmController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,7 +25,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users',[UserController::class, 'index']);
 Route::post('/users',[UserController::class, 'store']);
+Route::get('/users/{id}',[UserController::class, 'show']);
+Route::put('/users/{id}',[UserController::class, 'update']);
+Route::delete('/users/{id}',[UserController::class, 'destroy']);
 
+
+Route::get('/farms',[FarmController::class, 'index']);
+Route::post('/farms',[FarmController::class, 'store']);
+Route::get('/farms/{id}',[FarmController::class, 'show']);
+Route::put('/farms/{id}',[FarmController::class, 'update']);
+Route::delete('/farms/{id}',[FarmController::class, 'destroy']);
 
 
 // Route::resource('/drone',DroneController::class);
@@ -56,10 +67,5 @@ Route::delete('/drone{id}',[DroneController::class, 'destroy']);
 
 
 
-<<<<<<< HEAD
 
->>>>>>> d26ec0550adbb1876fc6a0dc62d3100e496a5507
->>>>>>> f80ef16def7e24479209b37bdf83fbffdf543ca5
-=======
 Route::post('plans',[PlanController::class,'store']);
->>>>>>> 1df07cbe3d0a83716faa89b8c505c1716d0bc37c

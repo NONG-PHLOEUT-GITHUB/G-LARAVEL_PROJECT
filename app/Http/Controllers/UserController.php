@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -21,7 +22,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+       
+        $user = User::store($request);
+        return response()->json(['success' =>true, 'data' => $user],201);
     }
 
     /**
@@ -29,7 +32,8 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::find($id);
+        return response()->json(['success' =>true, 'data' => $user],200);
     }
 
     /**
@@ -37,7 +41,9 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $user = User::store($request,$id);
+        return response()->json(['success' =>true, 'data' => $user],200);
     }
 
     /**
@@ -45,6 +51,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return response()->json(['success' =>true, 'message' => 'Date delete successfully'],200);
     }
 }

@@ -25,6 +25,17 @@ class User extends Authenticatable
         'password',
         'phone_number',
     ];
+    public static function store($request , $id = null){
+        $user = $request->only([
+            'name',
+            'email',
+            'password',
+            'phone_number',
+        ]);
+ 
+        $user = self::updateOrCreate(['id'=> $id],$user);
+        return $user;
+    }
    
 
     /**
