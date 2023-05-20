@@ -63,6 +63,6 @@ Route::delete('/drone{id}',[DroneController::class, 'destroy']);
 
 
 
-Route::post('plans',[PlanController::class,'store']);
+
 >>>>>>> d26ec0550adbb1876fc6a0dc62d3100e496a5507
 >>>>>>> f80ef16def7e24479209b37bdf83fbffdf543ca5
