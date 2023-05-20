@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Map;
 use Illuminate\Http\Request;
 
 class MapController extends Controller
@@ -12,6 +13,8 @@ class MapController extends Controller
     public function index()
     {
         //
+        $map = Map::all();
+        return $map;
     }
 
     /**
@@ -19,7 +22,8 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $map = Map::store($request);
+        return response()->json(['success create'=>true, 'data'=>$map],200);
     }
 
     /**
@@ -35,7 +39,8 @@ class MapController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $map = Map::store($request, $id);
+        return response()->json(['success create'=>true, 'data'=>$map],200);
     }
 
     /**
@@ -43,6 +48,10 @@ class MapController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $map = Map::find($id);
+        $map->delete();
+
+        return "map has been deleted";
+        
     }
 }

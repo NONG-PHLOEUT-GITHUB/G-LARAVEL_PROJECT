@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DroneController;
+use App\Http\Controllers\LocationController;
 use App\Http\Controllers\PlanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +34,12 @@ Route::post('/drone',[DroneController::class, 'store']);
 Route::put('/drone{id}',[DroneController::class, 'update']);
 Route::delete('/drone{id}',[DroneController::class, 'destroy']);
 
+// location
+Route::get('/location',[LocationController::class, 'index']);
+// Route::get('/drone{id}',[DroneController::class, 'show']);
+Route::post('/location',[LocationController::class, 'store']);
+Route::put('/location{id}',[LocationController::class, 'update']);
+Route::delete('/location{id}',[LocationController::class, 'destroy']);
 
 
 

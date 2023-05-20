@@ -16,9 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('area_type');
             $table->string('area');
-            $table->string('description');
-            $table->foreignId('location_id')->constrained(table:'locations')->onDelete('cascade');
-            $table->foreignId('drone_id')->constrained(table:'drones')->onDelete('cascade');
             $table->timestamps();
         });
     }

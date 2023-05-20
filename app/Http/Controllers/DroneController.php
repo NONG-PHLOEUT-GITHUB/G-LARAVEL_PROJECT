@@ -37,7 +37,7 @@ class DroneController extends Controller
     public function show(string $id)
     {
         //
-        dd(3);
+        // dd(3);
     }
 
     /**

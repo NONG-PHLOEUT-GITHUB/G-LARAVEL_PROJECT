@@ -17,4 +17,10 @@ class Farm extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    //relation to map
+    public function map()
+     {
+         return $this->belongsTo(Map::class);
+     }
 }

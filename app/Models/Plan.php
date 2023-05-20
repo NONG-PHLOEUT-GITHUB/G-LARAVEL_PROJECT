@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Plan extends Model
 {
@@ -38,6 +39,10 @@ class Plan extends Model
 
        $plans = self::updateOrCreate(['id'=>$id],$plans);
        return $plans;
+    }
+    // Relation to map
+    public function map():HasOne{
+        return $this->hasOne(Map::class);
     }
 
 }

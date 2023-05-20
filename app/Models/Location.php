@@ -4,17 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Location extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'plan_name',
+        'name',
         'longitude',
         'latitude',
-        'plan_description',
-        'drone_id',
     ];
 
     protected $hidden = [
@@ -33,5 +32,10 @@ class Location extends Model
 
        $locations = self::updateOrCreate(['id'=> $id],$locations);
        return $locations;
+    }
+
+    // Relation to map
+    public function map():HasOne{
+        return $this->hasOne(Map::class);
     }
 }

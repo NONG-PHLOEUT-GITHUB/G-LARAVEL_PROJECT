@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Plan;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
-class PlanController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $plans = Plan::all();
-        return response()->json(['status' =>'success', 'plans' => $plans]);
+        $location = Location::all();
+        return response()->json(['success create'=>true, 'data'=>$location],200);
     }
 
     /**
@@ -21,13 +21,9 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        $plans = Plan::store($request);
-
-        $plans->map_id()->create([
-            'map_id'=>request('map_id'),
-        ]);
-
-        return response()->json(['status' =>'success', 'plans' => $plans],202);
+        // dd(100);
+        $location = Location::store($request);
+        return response()->json(['success create'=>true, 'data'=>$location],200);
     }
 
     /**
@@ -43,7 +39,8 @@ class PlanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $location = Location::store($request, $id);
+        return response()->json(['success create'=>true, 'data'=>$location],200);
     }
 
     /**
@@ -51,6 +48,9 @@ class PlanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $location = Location::find($id);
+        $location->delete();
+
+        return "location has been deleted";
     }
 }
