@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Farm extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'farm_name',
+        'description',
+        'user_id',
+    ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
