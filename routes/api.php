@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,3 +61,9 @@ Route::delete('/drone{id}',[DroneController::class, 'destroy']);
 
 Route::post('plans',[PlanController::class,'store']);
 Route::get('plans',[PlanController::class,'index']);
+// location //
+Route::post('locations',[LocationController::class,'store']);
+Route::get('locations',[LocationController::class,'index']);
+// map //
+Route::post('maps',[MapController::class,'store']);
+Route::get('maps',[MapController::class,'index']);

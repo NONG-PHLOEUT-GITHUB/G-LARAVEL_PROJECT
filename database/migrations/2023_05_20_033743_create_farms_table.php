@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('farm_name');
             $table->text('description');
+            $table->unsignedBigInteger('map_id')->unsigned();
             $table->foreignId('user_id')->constrained(table:'users')->onDelete('cascade');
             $table->timestamps();
         });
