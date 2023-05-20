@@ -46,11 +46,11 @@ class Map extends Model
         return $this->hasMany(Farm::class);
     }
 
-    public function plan(){
-        return $this->belongsTo(Plan::class);
+    public function plans():HasMany{
+        return $this->hasMany(Plan::class);
     }
 
-    public function locations(){
-        return $this->belongsTo(Location::class);
+    public function locations():HasMany{
+        return $this->hasMany(Location::class);
     }
 }
