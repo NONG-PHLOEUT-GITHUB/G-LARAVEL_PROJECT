@@ -3,12 +3,9 @@
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\PlanController;
-<<<<<<< HEAD
 use App\Http\Controllers\UserController;
-=======
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MapController;
->>>>>>> 9f44abe6d51186ff0f72bf13644c026cd4ea4bef
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
