@@ -36,7 +36,7 @@ class Plan extends Model
         'farm_id',
        ]);
 
-       $plans = self::updateOrCreate(['id', $id],$plans);
+       $plans = self::updateOrCreate(['id'=>$id],$plans);
        return $plans;
     }
 

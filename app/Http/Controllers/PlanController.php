@@ -12,7 +12,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::all();
+        return response()->json(['status' =>'success', 'plans' => $plans]);
     }
 
     /**
@@ -22,7 +23,7 @@ class PlanController extends Controller
     {
         $plans = Plan::store($request);
 
-        return response()->json(['status' =>'success', 'plans' => $plans]);
+        return response()->json(['status' =>'success', 'plans' => $plans],202);
     }
 
     /**

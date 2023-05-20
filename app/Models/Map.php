@@ -33,7 +33,7 @@ class Map extends Model
             'drone_id',
        ]);
 
-       $maps = self::updateOrCreate(['id', $id],$maps);
+       $maps = self::updateOrCreate(['id' => $id],$maps);
        return $maps;
     }
 }

@@ -31,7 +31,7 @@ class Location extends Model
             'drone_id',
        ]);
 
-       $locations = self::updateOrCreate(['id', $id],$locations);
+       $locations = self::updateOrCreate(['id'=> $id],$locations);
        return $locations;
     }
 }

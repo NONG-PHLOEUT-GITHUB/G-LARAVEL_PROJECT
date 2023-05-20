@@ -56,4 +56,6 @@ Route::delete('/drone{id}',[DroneController::class, 'destroy']);
 
 
 
+
 Route::post('plans',[PlanController::class,'store']);
+Route::get('plans',[PlanController::class,'index']);
