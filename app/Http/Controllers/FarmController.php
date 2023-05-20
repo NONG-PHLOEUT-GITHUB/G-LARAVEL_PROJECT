@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FarmResource;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +15,7 @@ class FarmController extends Controller
     public function index()
     {
         $farms =Farm::all();
+        $farms = FarmResource::collection($farms);
         return response()->json(['success'=>true, 'data'=>$farms],200);
     }
 
