@@ -31,7 +31,9 @@ class MapController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $maps = Map::find($id);
+
+        return response()->json(['status' =>'success', 'maps' => $maps],202);
     }
 
     /**

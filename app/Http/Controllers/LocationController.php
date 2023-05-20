@@ -13,7 +13,8 @@ class LocationController extends Controller
     public function index()
     {
         $location = Location::all();
-        return response()->json(['success create'=>true, 'data'=>$location],200);
+
+        return response()->json(['status' =>'success', 'location' => $location],202);
     }
 
     /**
@@ -21,9 +22,9 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(100);
         $location = Location::store($request);
-        return response()->json(['success create'=>true, 'data'=>$location],200);
+
+        return response()->json(['status' =>'success', 'location' => $location],202);
     }
 
     /**
@@ -31,7 +32,7 @@ class LocationController extends Controller
      */
     public function show(string $id)
     {
-        //
+       
     }
 
     /**
@@ -39,8 +40,7 @@ class LocationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $location = Location::store($request, $id);
-        return response()->json(['success create'=>true, 'data'=>$location],200);
+        //
     }
 
     /**
@@ -48,9 +48,6 @@ class LocationController extends Controller
      */
     public function destroy(string $id)
     {
-        $location = Location::find($id);
-        $location->delete();
-
-        return "location has been deleted";
+        //
     }
 }

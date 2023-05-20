@@ -13,6 +13,17 @@ class Farm extends Model
         'description',
         'user_id',
     ];
+    public static function store($request , $id = null){
+        $farm = $request->only([
+         'farm_name',
+         'description',
+         'user_id',
+        ]);
+ 
+        $farm = self::updateOrCreate(['id'=> $id],$farm);
+        return $farm;
+    }
+
 
     public function user(){
         return $this->belongsTo(User::class);

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('farm_name');
             $table->text('description');
             $table->foreignId('user_id')->constrained(table:'users')->onDelete('cascade');
+            $table->foreignId('map_id')->constrained(table:'maps')->onDelete('cascade');
             $table->timestamps();
         });
     }

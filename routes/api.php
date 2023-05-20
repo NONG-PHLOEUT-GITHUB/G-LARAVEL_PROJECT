@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\DroneController;
-use App\Http\Controllers\LocationController;
+use App\Http\Controllers\FarmController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/users',[UserController::class, 'index']);
 Route::post('/users',[UserController::class, 'store']);
+Route::get('/users/{id}',[UserController::class, 'show']);
+Route::put('/users/{id}',[UserController::class, 'update']);
+Route::delete('/users/{id}',[UserController::class, 'destroy']);
 
+
+Route::get('/farms',[FarmController::class, 'index']);
+Route::post('/farms',[FarmController::class, 'store']);
+Route::get('/farms/{id}',[FarmController::class, 'show']);
+Route::put('/farms/{id}',[FarmController::class, 'update']);
+Route::delete('/farms/{id}',[FarmController::class, 'destroy']);
 
 
 // Route::resource('/drone',DroneController::class);
@@ -56,13 +66,11 @@ Route::delete('/location{id}',[LocationController::class, 'destroy']);
 
 
 
-
-
-
-
-
-
-
-
 Route::post('plans',[PlanController::class,'store']);
 Route::get('plans',[PlanController::class,'index']);
+// location //
+Route::post('locations',[LocationController::class,'store']);
+Route::get('locations',[LocationController::class,'index']);
+// map //
+Route::post('maps',[MapController::class,'store']);
+Route::get('maps',[MapController::class,'index']);

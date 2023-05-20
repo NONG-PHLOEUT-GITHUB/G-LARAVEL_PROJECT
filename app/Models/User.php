@@ -25,6 +25,17 @@ class User extends Authenticatable
         'password',
         'phone_number',
     ];
+    public static function store($request , $id = null){
+        $user = $request->only([
+            'name',
+            'email',
+            'password',
+            'phone_number',
+        ]);
+ 
+        $user = self::updateOrCreate(['id'=> $id],$user);
+        return $user;
+    }
    
 
     /**
@@ -36,6 +47,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
+        'email_verified_at'
     ];
 
     /**

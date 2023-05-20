@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PlanResource;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class PlanController extends Controller
     public function index()
     {
         $plans = Plan::all();
+        $plans = PlanResource::collection($plans);
         return response()->json(['status' =>'success', 'plans' => $plans]);
     }
 

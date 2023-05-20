@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('area_type');
             $table->string('area');
+            $table->string('description');
             $table->timestamps();
         });
     }
