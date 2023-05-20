@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PlanResource extends JsonResource
+class ShowLocationRescource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +14,6 @@ class PlanResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            'id' => $this->id,
-            'name'=> $this->plan_name,
-        ];
+        return parent::toArray($request);
     }
 }

@@ -15,9 +15,6 @@ class Map extends Model
         'area_type',
         'area',
         'description',
-        'location_id',
-        'drone_id',
-        'plan_id'
     ];
 
     protected $hidden = [
@@ -30,32 +27,36 @@ class Map extends Model
             'name',
             'area_type',
             'area',
+            'description',
        ]);
 
        $maps = self::updateOrCreate(['id' => $id],$maps);
        return $maps;
     }
 
-     // Relation to plan
-     public function plan()
-     {
-         return $this->belongsTo(Plan::class);
-     }
+  
 
        // Relation to drone
-       public function drone()
-       {
-           return $this->belongsTo(Drone::class);
-       }
+    public function drones():HasMany
+    {
+        return $this->hasMany(Drone::class);
+    }
 
     // Relation to location
-     public function location()
-     {
-         return $this->belongsTo(Location::class);
-     }
+    public function locations():HasMany
+    {
+        return $this->hasMany(Location::class);
+    }
 
        // Relation to farm
-    public function farms():HasMany{
+    public function farms():HasMany
+    {
         return $this->hasMany(Farm::class);
+    } 
+      
+    // Relation to plan
+    public function plans():HasMany
+    {
+         return $this->hasMany(Plan::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\LocationRescource;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,7 @@ class LocationController extends Controller
     public function index()
     {
         $location = Location::all();
-
+        $location = LocationRescource::collection($location);
         return response()->json(['status' =>'success', 'location' => $location],202);
     }
 

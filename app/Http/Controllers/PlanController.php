@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PlanResource;
+use App\Http\Resources\ShowPlaneRescource;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -24,11 +25,6 @@ class PlanController extends Controller
     public function store(Request $request)
     {
         $plans = Plan::store($request);
-
-        $plans->map_id()->create([
-            'map_id'=>request('map_id'),
-        ]);
-
         return response()->json(['status' =>'success', 'plans' => $plans],202);
     }
 
@@ -37,7 +33,9 @@ class PlanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $plan = Plan::find($id);
+        $plan = new ShowPlaneRescource($plan);
+        return response()->json(['status' =>'success', 'plan' => $plan],202);
     }
 
     /**

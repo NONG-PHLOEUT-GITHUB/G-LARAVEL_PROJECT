@@ -18,7 +18,6 @@ class Plan extends Model
         'plan_description',
         'user_id',
         'map_id',
-        'farm_id',
     ];
 
     protected $hidden = [
@@ -27,6 +26,7 @@ class Plan extends Model
     ];
 
     public static function store($request , $id = null){
+
        $plans = $request->only([
             'plan_name',
             'date_time',
@@ -34,15 +34,14 @@ class Plan extends Model
             'plan_description',
             'user_id',
             'map_id',
-            'farm_id',
        ]);
 
        $plans = self::updateOrCreate(['id'=>$id],$plans);
        return $plans;
     }
     // Relation to map
-    public function map():HasOne{
-        return $this->hasOne(Map::class);
+    public function map(){
+        return $this->belongsTo(Map::class);
     }
 
     // plan belongs to user

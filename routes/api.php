@@ -4,6 +4,8 @@ use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -66,11 +68,13 @@ Route::delete('/location{id}',[LocationController::class, 'destroy']);
 
 
 
-Route::post('plans',[PlanController::class,'store']);
-Route::get('plans',[PlanController::class,'index']);
+Route::post('/plans',[PlanController::class,'store']);
+Route::get('/plans',[PlanController::class,'index']);
+Route::get('/plans/{id}',[PlanController::class,'show']);
 // location //
-Route::post('locations',[LocationController::class,'store']);
-Route::get('locations',[LocationController::class,'index']);
+Route::post('/locations',[LocationController::class,'store']);
+Route::get('/locations',[LocationController::class,'index']);
 // map //
-Route::post('maps',[MapController::class,'store']);
-Route::get('maps',[MapController::class,'index']);
+Route::post('/maps',[MapController::class,'store']);
+Route::get('/maps',[MapController::class,'index']);
+Route::get('/maps/{id}',[MapController::class,'show']);

@@ -14,6 +14,7 @@ class Location extends Model
         'name',
         'longitude',
         'latitude',
+        'map_id',
     ];
 
     protected $hidden = [
@@ -27,7 +28,6 @@ class Location extends Model
             'name',
             'longitude',
             'latitude',
-            'plan_description',
             'map_id',
        ]);
 
@@ -36,7 +36,7 @@ class Location extends Model
     }
 
     // Relation to map
-    public function map():HasOne{
-        return $this->hasOne(Map::class);
+    public function map(){
+        return $this->belongsTo(Map::class);
     }
 }
