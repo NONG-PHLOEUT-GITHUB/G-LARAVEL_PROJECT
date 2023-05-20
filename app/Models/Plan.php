@@ -45,14 +45,14 @@ class Plan extends Model
         return $this->belongsTo(User::class);
     } 
     
-    //plan has many locations
-    public function drone(){
-        return $this->belongsTo(Drone::class);
+
+    public function map(){
+        return $this->belongsTo(Map::class);
     }
 
-
-    public function maps():HasMany{
-        return $this->hasMany(Map::class);
+    //plan has many locations
+    public function drones():hasMany{
+        return $this->hasMany(Drone::class);
     }
 }
 
