@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\MapResource;
-use App\Models\Map;
+use App\Models\Location;
 use Illuminate\Http\Request;
 
-class MapController extends Controller
+class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $maps = Map::all();
-        $maps = MapResource::collection($maps);
-        return response()->json(['status' =>'success', 'maps' => $maps],202);
+        $location = Location::all();
+
+        return response()->json(['status' =>'success', 'location' => $location],202);
     }
 
     /**
@@ -23,9 +22,9 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
-        $maps = Map::store($request);
+        $location = Location::store($request);
 
-        return response()->json(['status' =>'success', 'maps' => $maps],202);
+        return response()->json(['status' =>'success', 'location' => $location],202);
     }
 
     /**
@@ -33,9 +32,7 @@ class MapController extends Controller
      */
     public function show(string $id)
     {
-        $maps = Map::find($id);
-
-        return response()->json(['status' =>'success', 'maps' => $maps],202);
+       
     }
 
     /**
