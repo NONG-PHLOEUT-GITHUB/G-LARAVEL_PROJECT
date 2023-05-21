@@ -22,7 +22,7 @@ class ShowPlaneRescource extends JsonResource
             'plan_description' => $this->plan_description,
             'user' => new UserResource($this->user),
             'map' => new MapResource($this->map), 
-            'drone' => $this->drones,
+            'drones' => DroneResource::collection($this->drones),
         ];
     }
 }

@@ -12,6 +12,7 @@ class Farm extends Model
         'farm_name',
         'description',
         'user_id',
+        'map_id',
     ];
 
     protected $hidden = [
@@ -24,6 +25,7 @@ class Farm extends Model
          'farm_name',
          'description',
          'user_id',
+         'map_id',
         ]);
  
         $farm = self::updateOrCreate(['id'=> $id],$farm);

@@ -18,10 +18,10 @@ class ShowMapRescource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'plans' => $this->plans,
-            'locations' => $this->locations,
-            'farms' => $this->farms,
-            // 'drones' => $this->drones,
+            'plans' =>PlanResource::collection($this->plans),
+            'locations' =>LocationRescource::collection($this->locations),
+            'farms' =>FarmResource::collection($this->farms),
+            'drones' =>DroneResource::collection($this->drones),
         ];
     }
 }
