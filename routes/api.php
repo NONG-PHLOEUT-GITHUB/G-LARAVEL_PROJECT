@@ -57,7 +57,8 @@ Route::delete('/location/{id}',[LocationController::class, 'destroy']);
 Route::put('/plans/{id}',[PlanController::class,'update']);
 Route::post('/plans',[PlanController::class,'store']);
 Route::get('/plans',[PlanController::class,'index']);
-Route::get('/plans/{id}',[PlanController::class,'show']);
+Route::get('/plans/{planname}',[PlanController::class,'show']);
+
 // map //
 Route::post('/maps',[MapController::class,'store']);
 Route::get('/maps',[MapController::class,'index']);
