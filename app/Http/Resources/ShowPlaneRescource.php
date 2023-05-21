@@ -17,9 +17,12 @@ class ShowPlaneRescource extends JsonResource
         return [
             'id' => $this->id,
             'name'=> $this->plan_name,
-            'user' => $this->user,
-            'map' => $this->map,
-            // 'drone' => $this->drones,
+            'date_time'=> $this->date_time,
+            'spray_density'=> $this->spray_density,
+            'plan_description' => $this->plan_description,
+            'user' => new UserResource($this->user),
+            'map' => new MapResource($this->map), 
+            'drone' => $this->drones,
         ];
     }
 }

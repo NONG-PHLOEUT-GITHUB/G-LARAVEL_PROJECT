@@ -13,6 +13,12 @@ class Farm extends Model
         'description',
         'user_id',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+    
     public static function store($request , $id = null){
         $farm = $request->only([
          'farm_name',

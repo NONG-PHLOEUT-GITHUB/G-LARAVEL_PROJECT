@@ -26,6 +26,7 @@ class User extends Authenticatable
         'phone_number',
     ];
     public static function store($request , $id = null){
+
         $user = $request->only([
             'name',
             'email',

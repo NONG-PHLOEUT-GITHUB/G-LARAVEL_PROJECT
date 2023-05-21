@@ -39,6 +39,8 @@ class Plan extends Model
        $plans = self::updateOrCreate(['id'=>$id],$plans);
        return $plans;
     }
+
+
     // Relation to map
     public function map(){
         return $this->belongsTo(Map::class);

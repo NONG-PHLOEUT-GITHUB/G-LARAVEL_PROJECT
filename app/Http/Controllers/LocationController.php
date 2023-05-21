@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\LocationRescource;
+use App\Http\Resources\ShowLocationRescource;
 use App\Models\Location;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,9 @@ class LocationController extends Controller
      */
     public function show(string $id)
     {
-       
+        $location = Location::find($id);
+        $location = new ShowLocationRescource($location);
+        return response()->json(['status' =>'success', 'location' => $location],202);
     }
 
     /**

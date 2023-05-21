@@ -48,33 +48,16 @@ Route::delete('/drone/{id}',[DroneController::class, 'destroy']);
 
 // location
 Route::get('/location',[LocationController::class, 'index']);
-// Route::get('/drone{id}',[DroneController::class, 'show']);
+Route::get('/location/{id}',[LocationController::class, 'show']);
 Route::post('/location',[LocationController::class, 'store']);
 Route::put('/location/{id}',[LocationController::class, 'update']);
 Route::delete('/location/{id}',[LocationController::class, 'destroy']);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// plan
 Route::put('/plans/{id}',[PlanController::class,'update']);
 Route::post('/plans',[PlanController::class,'store']);
 Route::get('/plans',[PlanController::class,'index']);
 Route::get('/plans/{id}',[PlanController::class,'show']);
-
-// location //
-Route::post('/locations',[LocationController::class,'store']);
-Route::get('/locations',[LocationController::class,'index']);
 // map //
 Route::post('/maps',[MapController::class,'store']);
 Route::get('/maps',[MapController::class,'index']);

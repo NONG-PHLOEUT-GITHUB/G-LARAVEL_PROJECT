@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DroneRequest;
 use App\Http\Resources\DroneResource;
+use App\Http\Resources\ShowDroneRescource;
 use App\Models\Drone;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class DroneController extends Controller
     public function index()
     {
         $drone = Drone::all();
-        return $drone;
+        return response()->json(['Get success'=>true, 'data'=>$drone],200);
     }
 
     /**
@@ -33,8 +34,8 @@ class DroneController extends Controller
     public function show(string $id)
     {
         $drone = Drone::find($id);
-        $drone = new DroneResource($drone);
-        return response()->json(['status' =>'success', 'plan' => $drone],202);
+        $drone = new ShowDroneRescource($drone);  
+        return response()->json(['status' =>'success', 'data' => $drone],202);
     }
 
     /**
