@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ShowMapRescource;
+use App\Models\Farm;
 use App\Models\Map;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,9 @@ class MapController extends Controller
      */
     public function index()
     {
-        //
+
         $maps = Map::all();
-        return response()->json(['status' =>'success', 'maps' => $maps],202);
+        return response()->json(['status' => 'success', 'maps' => $maps], 202);
     }
 
     /**
@@ -24,7 +25,7 @@ class MapController extends Controller
     public function store(Request $request)
     {
         $map = Map::store($request);
-        return response()->json(['success create'=>true, 'data'=>$map],200);
+        return $map;
     }
 
     /**
@@ -34,7 +35,7 @@ class MapController extends Controller
     {
         $maps = Map::find($id);
         $maps = new ShowMapRescource($maps);
-        return response()->json(['status' =>'success', 'maps' => $maps],202);
+        return response()->json(['status' => 'success', 'maps' => $maps], 202);
     }
 
     /**
@@ -43,9 +44,9 @@ class MapController extends Controller
     public function update(Request $request, string $id)
     {
         $map = Map::store($request, $id);
-        return response()->json(['success create'=>true, 'data'=>$map],200);
+        return $map;
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
@@ -53,7 +54,43 @@ class MapController extends Controller
     {
         $map = Map::find($id);
         $map->delete();
-        return response()->json(['delete success'=>true, 'data'=>$map],200);
+        return response()->json(['delete success' => true, 'data' => $map], 200);
+    }
+
+
+
+    public function downloadMapPhoto($mapName, $farmId)
+    {
+
+        $map = Map::where('name', $mapName)
+            ->whereHas('farms', function ($query) use ($farmId) {
+                $query->where('id', $farmId);
+            })->with('farms')->first();
+
+        if ($map === null) {
+            return response()->json(['message' => 'No map found.'], 404);
+        }else{
+            return response()->json(['status' => 'success', 'maps' => $map], 202);
+        }
+
+        
+    }
+    /// as a farmer want to delete request by map name and farm id
+    public function deleteMapPhoto($mapName, $farmId)
+    {
+
+        $map = Map::where('name', $mapName)
+            ->whereHas('farms', function ($query) use ($farmId) {
+                $query->where('id', $farmId);
+            })->with('farms')->first();
+
+        if ($map === null) {
+            return response()->json(['message' => 'No map found.'], 404);
+        }else {
+            $map->delete(); // delete the map record
+            return response()->json(['message' => 'Map has been deleted.']);
+        }
+
         
     }
 }
