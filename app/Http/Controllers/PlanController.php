@@ -31,11 +31,22 @@ class PlanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($planname)
     {
-        $plan = Plan::find($id);
-        $plan = new ShowPlaneRescource($plan);
-        return response()->json(['status' =>'success', 'plan' => $plan],202);
+        // dd($planname);
+        // $plan = Plan::find($id);
+        // $plan = new ShowPlaneRescource($plan);
+        // return response()->json(['status' =>'success', 'plan' => $plan],202);
+        // $plan = Plan::all();
+        $plan = Plan::where('plan_name', $planname)->first();
+        
+        if (!$plan) {
+            abort(404, 'Plan not found');
+        return response()->json(['plan not found' => $plan],404);
+
+        }
+        return $plan;
+        
     }
 
     /**
