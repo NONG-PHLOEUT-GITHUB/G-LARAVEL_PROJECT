@@ -22,16 +22,40 @@ class Map extends Model
         'updated_at',
     ];
 
-    public static function store($request , $id = null){
-       $maps = $request->only([
+    // public static function store($request , $id = null){
+    //    $maps = $request->only([
+    //         'name',
+    //         'area_type',
+    //         'area',
+    //         'description',
+    //    ]);
+
+    //    $maps = self::updateOrCreate(['id' => $id],$maps);
+    //    return $maps;
+    // }
+
+    public static function store($request, $id = null)
+    {
+
+        $maps = $request->only([
             'name',
             'area_type',
             'area',
             'description',
-       ]);
+        ]);
 
-       $maps = self::updateOrCreate(['id' => $id],$maps);
-       return $maps;
+        if ($id) {
+            $map = self::find($id);
+            if (!$map) {
+                return response()->json(['error' => 'Record not found'], 404);
+            }
+            $map->update($maps);
+        } else {
+            $map = self::create($maps);
+            $id = $map->$id;
+        }
+
+        return response()->json(['success' => true, 'data' => $map], 200);
     }
 
   

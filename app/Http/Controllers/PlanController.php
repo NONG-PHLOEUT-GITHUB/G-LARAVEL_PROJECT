@@ -31,11 +31,13 @@ class PlanController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $plan = Plan::find($id);
         $plan = new ShowPlaneRescource($plan);
         return response()->json(['status' =>'success', 'plan' => $plan],202);
+  
+        
     }
 
     /**
@@ -57,5 +59,15 @@ class PlanController extends Controller
 
         return response()->json(['delete success'=>true, 'data'=>$plans],200);
         
+    }
+
+    public function showPlanName($planName){
+
+        $plan = Plan::where('plan_name', $planName)->with('drones','')->first();
+        
+        if (!$plan) {
+            return response()->json(['plan not found' => $plan],404);
+        }
+        return $plan;
     }
 }
