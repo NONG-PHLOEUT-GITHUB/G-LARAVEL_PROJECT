@@ -63,7 +63,7 @@ class PlanController extends Controller
 
     public function showPlanName($planName){
 
-        $plan = Plan::where('plan_name', $planName)->with('drones','')->first();
+        $plan = Plan::where('plan_name', $planName)->with('drones')->first();
         
         if (!$plan) {
             return response()->json(['plan not found' => $plan],404);

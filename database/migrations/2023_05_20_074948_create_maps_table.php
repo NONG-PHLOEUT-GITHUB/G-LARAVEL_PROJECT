@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -11,12 +12,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('locations', function (Blueprint $table) {
+        Schema::create('maps', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('longitude');
-            $table->decimal('latitude');
-            $table->foreignId('map_id')->constrained(table:'maps')->onDelete('cascade');
+            $table->string('area_type');
+            $table->string('area');
+            $table->string('description');
+            $table->string('image');
+            $table->foreignId('location_id')->constrained(table:'locations')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('locations');
+        Schema::dropIfExists('maps');
     }
 };

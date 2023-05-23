@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Map extends Model
 {
@@ -21,18 +22,6 @@ class Map extends Model
         'created_at',
         'updated_at',
     ];
-
-    // public static function store($request , $id = null){
-    //    $maps = $request->only([
-    //         'name',
-    //         'area_type',
-    //         'area',
-    //         'description',
-    //    ]);
-
-    //    $maps = self::updateOrCreate(['id' => $id],$maps);
-    //    return $maps;
-    // }
 
     public static function store($request, $id = null)
     {
@@ -67,9 +56,9 @@ class Map extends Model
     }
 
     // Relation to location
-    public function locations():HasMany
+    public function location()
     {
-        return $this->hasMany(Location::class);
+        return $this->belongsTo(Location::class);
     }
 
        // Relation to farm

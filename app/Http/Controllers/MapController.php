@@ -91,6 +91,5 @@ class MapController extends Controller
             return response()->json(['message' => 'Map has been deleted.']);
         }
 
-        
     }
 }

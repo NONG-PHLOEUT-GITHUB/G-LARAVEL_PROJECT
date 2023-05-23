@@ -16,7 +16,7 @@ class FarmResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'farm_name'=>$this->name,
+            'farm_name'=>$this->farm_name,
             'description'=>$this->description,
             'user_id'=>$this->user,
         ];

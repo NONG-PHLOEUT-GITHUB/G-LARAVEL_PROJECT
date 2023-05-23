@@ -28,8 +28,6 @@ return new class extends Migration
             $table->unsignedBigInteger('map_id')->unsigned();
             $table->foreign('map_id')->references('id')->on('maps')->onDelete('cascade');
 
-            $table->unsignedBigInteger('locaton_id')->unsigned();
-            $table->foreign('locaton_id')->references('id')->on('locations')->onDelete('cascade');
 
             $table->timestamps();
         });
