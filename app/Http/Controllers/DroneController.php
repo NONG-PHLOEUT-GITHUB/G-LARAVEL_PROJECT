@@ -75,11 +75,5 @@ class DroneController extends Controller
         }
     
     }
-    // public function showLocation($id) {
-    //     // Use $droneId parameter to find the drone location
-    //     $droneLocation = Drone::find($id)->location;
-    //     return view('drones.location', ['location' => $droneLocation]);
-    //   }
-    
 
 }

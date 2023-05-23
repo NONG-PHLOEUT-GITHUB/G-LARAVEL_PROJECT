@@ -16,6 +16,8 @@ class Map extends Model
         'area_type',
         'area',
         'description',
+        'image',
+        'location_id',
     ];
 
     protected $hidden = [
@@ -31,6 +33,8 @@ class Map extends Model
             'area_type',
             'area',
             'description',
+            'image',
+            'location_id',
         ]);
 
         if ($id) {

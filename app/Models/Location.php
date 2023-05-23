@@ -15,7 +15,7 @@ class Location extends Model
         'name',
         'longitude',
         'latitude',
-        'map_id',
+        'drone_id',
     ];
 
     protected $hidden = [
@@ -29,7 +29,7 @@ class Location extends Model
             'name',
             'longitude',
             'latitude',
-            'map_id',
+            'drone_id',
        ]);
 
        $locations = self::updateOrCreate(['id'=> $id],$locations);

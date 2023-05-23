@@ -17,7 +17,6 @@ class Drone extends Model
         'user_id',
         'plan_id',
         'map_id',
-        'locaton_id'
     ];
 
     protected $hidden = [
@@ -27,7 +26,7 @@ class Drone extends Model
     // FUNTION TO CREATE AND UPDATE drone
     public static function store($request, $id = null)
     {
-        $drone = $request->only(["drone_type", "drone_name", "battery", "playload_capacity", "user_id", "plan_id", "map_id","locaton_id"]);
+        $drone = $request->only(["drone_type", "drone_name", "battery", "playload_capacity", "user_id", "plan_id", "map_id"]);
         $drone = self::updateOrCreate(["id" => $id], $drone);
         return $drone;
     }
