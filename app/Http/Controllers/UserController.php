@@ -55,6 +55,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return response()->json(['success' =>true, 'message' => 'Date delete successfully'],200);
+        return response()->json(['success' =>true, 'message' => 'Data delete successfully'],200);
     }
 }

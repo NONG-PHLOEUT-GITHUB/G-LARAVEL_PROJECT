@@ -18,7 +18,8 @@ class ShowFarmResource extends JsonResource
             'id'=>$this->id,
             'farm_name'=>$this->name,
             'description'=>$this->description,
-            'user_id'=>$this->user,
+            'user_id'=>$this->users,
+            'map'=>$this->map,
         ];
     }
 }

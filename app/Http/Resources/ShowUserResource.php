@@ -21,6 +21,8 @@ class ShowUserResource extends JsonResource
             'password'=>$this->password,
             'number'=>$this->phone->number ?? null,
             'farm'=>$this->farms,
+            'drone'=>$this->drones,
+            'plan'=>$this->plans,
         ];
 
     }
