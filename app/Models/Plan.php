@@ -41,11 +41,6 @@ class Plan extends Model
     }
 
 
-    // Relation to map
-    public function map(){
-        return $this->belongsTo(Map::class);
-    }
-
     // plan belongs to user
     public function user(){
         return $this->belongsTo(User::class);
