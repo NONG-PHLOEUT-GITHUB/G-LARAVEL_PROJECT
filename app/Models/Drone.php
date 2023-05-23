@@ -37,7 +37,7 @@ class Drone extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Relation to many map
+    // Relation to map
     public function map()
     {
         return $this->belongsTo(Map::class);
@@ -49,7 +49,7 @@ class Drone extends Model
         return $this->belongsTo(Plan::class);
     }
 
-    // Relation to many location
+    // Relation to location
     public function locations():HasMany
     {
         return $this->hasMany(Location::class);

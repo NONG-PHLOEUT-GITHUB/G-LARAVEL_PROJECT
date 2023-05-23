@@ -63,6 +63,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    // Relation to farm
     public function farms():HasMany{
         return $this->hasMany(Farm::class);
     }

@@ -44,7 +44,8 @@ class LocationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $location = Location::store($request, $id);
+        return response()->json(['success create'=>true, 'data'=>$location],200);
     }
 
     /**
@@ -52,6 +53,8 @@ class LocationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $location = Location::find($id);
+        $location->delete();
+        return response()->json(['delete success'=>true, 'data'=>$location],200);
     }
 }

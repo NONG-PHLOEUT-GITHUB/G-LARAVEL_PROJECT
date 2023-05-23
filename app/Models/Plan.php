@@ -41,14 +41,12 @@ class Plan extends Model
     }
 
 
-    // plan belongs to user
+    // Relation to user
     public function user(){
         return $this->belongsTo(User::class);
     } 
     
-
-   
-    //plan has many locations
+    // Relation to location
     public function drones():HasMany{
         return $this->hasMany(Drone::class);
     }
