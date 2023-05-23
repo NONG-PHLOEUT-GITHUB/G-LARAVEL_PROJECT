@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LocationRequest;
 use App\Http\Resources\LocationRescource;
 use App\Http\Resources\ShowLocationRescource;
 use App\Models\Location;
@@ -22,7 +23,7 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(LocationRequest $request)
     {
         $location = Location::store($request);
 
@@ -42,7 +43,7 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(LocationRequest $request, string $id)
     {
         $location = Location::store($request, $id);
         return response()->json(['success create'=>true, 'data'=>$location],200);

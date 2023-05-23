@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PlanRequest;
 use App\Http\Resources\PlanResource;
 use App\Http\Resources\ShowPlaneRescource;
 use App\Models\Plan;
@@ -22,7 +23,7 @@ class PlanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PlanRequest $request)
     {
         $plans = Plan::store($request);
         return response()->json(['status' =>'success', 'plans' => $plans],202);
@@ -43,7 +44,7 @@ class PlanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(PlanRequest $request, $id)
     {
         $plans = Plan::store($request, $id);
         return response()->json(['status' =>'success', 'plans' => $plans],202);

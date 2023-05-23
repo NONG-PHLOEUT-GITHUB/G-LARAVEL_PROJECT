@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class DroneRequest extends FormRequest
+class PlanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class DroneRequest extends FormRequest
     {
         return true;
     }
-    
+
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
@@ -28,13 +28,12 @@ class DroneRequest extends FormRequest
     public function rules(): array
     {
         return [
-            
-            'drone_type' => "required",
-            'drone_name' => "required",
-            'battery' => "required",
-            'playload_capacity' => "required",
-            'user_id' => "required",
-            'plan_id' => "required",
+            'plan_name' => 'required',
+            'date_time' => 'required|date_format:Y-m-d H:i:s',
+            'spray_density' => 'required',
+            'plan_description' => 'required',
+            'user_id' => 'required',
+            'map_id' => 'required',
         ];
     }
 }
