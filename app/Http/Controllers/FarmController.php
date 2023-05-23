@@ -53,6 +53,6 @@ class FarmController extends Controller
     {
         $farm = Farm::find($id);
         $farm->delete();
-        return response()->json(['success' =>true, 'message' => 'Date delete successfully'],200);
+        return response()->json(['success' =>true, 'message' => 'Data delete successfully'],200);
     }
 }

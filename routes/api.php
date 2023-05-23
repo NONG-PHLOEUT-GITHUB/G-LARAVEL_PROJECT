@@ -24,19 +24,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+//Users
 Route::get('/users',[UserController::class, 'index']);
 Route::post('/users',[UserController::class, 'store']);
 Route::get('/users/{id}',[UserController::class, 'show']);
 Route::put('/users/{id}',[UserController::class, 'update']);
 Route::delete('/users/{id}',[UserController::class, 'destroy']);
 
-
+//Farms
 Route::get('/farms',[FarmController::class, 'index']);
 Route::post('/farms',[FarmController::class, 'store']);
 Route::get('/farms/{id}',[FarmController::class, 'show']);
 Route::put('/farms/{id}',[FarmController::class, 'update']);
 Route::delete('/farms/{id}',[FarmController::class, 'destroy']);
+
+
+Route::get('/drones/{id}/{location}', [DroneController::class, 'showLocation']);
+
 
 
 // Route::resource('/drone',DroneController::class);

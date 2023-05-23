@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Drone extends Model
 {
@@ -50,8 +51,8 @@ class Drone extends Model
     }
 
     // Relation to many location
-    public function location()
+    public function locations():HasMany
     {
-        return $this->belongsTo(Location::class);
+        return $this->hasMany(Location::class);
     }
 }

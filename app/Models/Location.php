@@ -40,7 +40,8 @@ class Location extends Model
     public function map(){
         return $this->belongsTo(Map::class);
     }
-    public function drones():HasMany{
-        return $this->hasMany(Drone::class);
+    public function drone(){
+        return $this->belongsTo(Drone::class);
     }
+  
 }
