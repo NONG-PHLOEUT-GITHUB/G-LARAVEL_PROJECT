@@ -26,14 +26,10 @@ class AuthenticationController extends Controller
     //     return response()->json(['message' => 'Logout successfully']);
     // }
 
-    public function logout() {
+    public function logout(Request $request) {
+        $userLogout = (request()->user()->tokens()->delete());
+        $userLogout = Auth::user();
+        return response()->json(['message' => "logout seccess", 'data' => $userLogout],200);
     
-        // dd(1000);
-     
-        // $request->user()->tokens()->delete();
-        $user = Auth::user();
-        dd($user);
-        return response()->json(['message' => 'Logout successfully']);
-      
     }
 }
