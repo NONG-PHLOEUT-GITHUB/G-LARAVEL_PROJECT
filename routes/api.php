@@ -73,6 +73,6 @@ Route::delete('/maps/{id}',[MapController::class,'destroy']);
 Route::get('/maps/map_name/farm_id',[MapController::class,'show']);
 
 
-// map controller
+// Map controller
 Route::get('/download_maps/{mapName}/{farmId}',  [MapController::class,'downloadMapPhoto']);
 Route::delete('/delete_maps/{mapName}/{farmId}',  [MapController::class,'deleteMapPhoto']);
