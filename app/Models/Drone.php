@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Drone extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'drone_type',
         'drone_name',
@@ -16,8 +17,6 @@ class Drone extends Model
         'playload_capacity',
         'user_id',
         'plan_id',
-        'map_id',
-        'locaton_id'
     ];
 
     protected $hidden = [
@@ -27,21 +26,35 @@ class Drone extends Model
     // FUNTION TO CREATE AND UPDATE drone
     public static function store($request, $id = null)
     {
-        $drone = $request->only(["drone_type", "drone_name", "battery", "playload_capacity", "user_id", "plan_id", "map_id","locaton_id"]);
-        $drone = self::updateOrCreate(["id" => $id], $drone);
-        return $drone;
+
+        $drones = $request->only([
+            "drone_type",
+            "drone_name",
+            "battery",
+            "playload_capacity",
+            "user_id",
+            "plan_id"
+        ]);
+
+        if ($id) {
+            $drone = self::find($id);
+            if (!$drone) {
+                return response()->json(['error' => 'Record not found'], 404);
+            }
+            $drone->update($drones);
+        } else {
+            $drone = self::create($drones);
+            $id = $drone->$id;
+        }
+
+        return response()->json(['success' => true, 'data' => $drone], 200);
     }
+
     //==================RELATION==============================================================
     // Relation to user
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    // Relation to many map
-    public function map()
-    {
-        return $this->belongsTo(Map::class);
     }
 
     // Relation to plan
@@ -51,8 +64,13 @@ class Drone extends Model
     }
 
     // Relation to many location
-    public function locations():HasMany
+    public function locations(): HasMany
     {
         return $this->hasMany(Location::class);
+    }
+    // Relation to many location
+    public function maps(): HasMany
+    {
+        return $this->hasMany(Map::class);
     }
 }

@@ -33,7 +33,6 @@ class Plan extends Model
             'spray_density',
             'plan_description',
             'user_id',
-            'map_id',
        ]);
 
        $plans = self::updateOrCreate(['id'=>$id],$plans);
@@ -46,8 +45,6 @@ class Plan extends Model
         return $this->belongsTo(User::class);
     } 
     
-
-   
     //plan has many locations
     public function drones():HasMany{
         return $this->hasMany(Drone::class);

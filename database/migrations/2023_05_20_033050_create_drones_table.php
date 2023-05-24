@@ -19,11 +19,8 @@ return new class extends Migration
             $table->integer('battery');
             $table->integer('playload_capacity');
 
-            $table->unsignedBigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-            $table->unsignedBigInteger('plan_id')->unsigned();
-            $table->foreign('plan_id')->references('id')->on('plans')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained(table:'users')->onDelete('cascade');
+            $table->foreignId('plan_id')->constrained(table:'plans')->onDelete('cascade');
 
             $table->timestamps();
         });

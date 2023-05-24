@@ -15,7 +15,7 @@ class Location extends Model
         'name',
         'longitude',
         'latitude',
-        'map_id',
+        'drone_id',
     ];
 
     protected $hidden = [
@@ -23,22 +23,33 @@ class Location extends Model
         'updated_at',
     ];
 
-    public static function store($request , $id = null){
+    public static function store($request, $id = null)
+    {
 
-       $locations = $request->only([
+        $locations = $request->only([
             'name',
             'longitude',
             'latitude',
-            'map_id',
-       ]);
+            'drone_id',
+        ]);
 
-       $locations = self::updateOrCreate(['id'=> $id],$locations);
-       return $locations;
+        if ($id) {
+            $location = self::find($id);
+            if (!$location) {
+                return response()->json(['error' => 'Record not found'], 404);
+            }
+            $location->update($locations);
+        } else {
+            $location = self::create($locations);
+            $id = $location->$id;
+        }
+
+        return response()->json(['success' => true, 'data' => $location], 200);
     }
 
     // Relation to map
-    public function map(){
-        return $this->hasOne(Map::class);
+    public function maps(){
+        return $this->hasMany(Map::class);
     }
     public function drone(){
         return $this->belongsTo(Drone::class);

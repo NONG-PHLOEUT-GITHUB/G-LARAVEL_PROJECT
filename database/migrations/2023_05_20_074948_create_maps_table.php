@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('image');
             $table->foreignId('location_id')->constrained(table:'locations')->onDelete('cascade');
+            $table->foreignId('drone_id')->constrained(table:'drones')->onDelete('cascade');
             $table->timestamps();
         });
     }

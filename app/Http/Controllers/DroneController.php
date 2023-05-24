@@ -27,7 +27,7 @@ class DroneController extends Controller
     public function store(DroneRequest $request)
     {
         $drone = Drone::store($request);
-        return response()->json(['success create'=>true, 'data'=>$drone],200);
+        return $drone;
     }
 
     /**
@@ -46,7 +46,7 @@ class DroneController extends Controller
     public function update(DroneRequest $request, $id)
     {
         $drone = Drone::store($request, $id);
-        return response()->json(['success create'=>true, 'data'=>$drone],200);
+        return $drone;
     }
 
     /**
