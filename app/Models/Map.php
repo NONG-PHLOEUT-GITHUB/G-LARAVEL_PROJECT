@@ -18,6 +18,7 @@ class Map extends Model
         'description',
         'image',
         'location_id',
+        'drone_id',
     ];
 
     protected $hidden = [
@@ -35,6 +36,7 @@ class Map extends Model
             'description',
             'image',
             'location_id',
+            'drone_id',
         ]);
 
         if ($id) {

@@ -68,5 +68,11 @@ class User extends Authenticatable
     public function farms():HasMany{
         return $this->hasMany(Farm::class);
     }
+    public function drones():HasMany{
+        return $this->hasMany(Drone::class);
+    }
+    public function plans():HasMany{
+        return $this->hasMany(Plan::class);
+    }
 
 }

@@ -17,7 +17,6 @@ class Plan extends Model
         'spray_density',
         'plan_description',
         'user_id',
-        'map_id',
     ];
 
     protected $hidden = [
@@ -25,21 +24,30 @@ class Plan extends Model
         'updated_at',
     ];
 
-    public static function store($request , $id = null){
+    public static function store($request, $id = null)
+    {
 
-       $plans = $request->only([
+        $plans = $request->only([
             'plan_name',
             'date_time',
             'spray_density',
             'plan_description',
             'user_id',
-       ]);
+        ]);
 
-       $plans = self::updateOrCreate(['id'=>$id],$plans);
-       return $plans;
+        if ($id) {
+            $plan = self::find($id);
+            if (!$plan) {
+                return response()->json(['error' => 'Record not found'], 404);
+            }
+            $plan->update($plans);
+        } else {
+            $plan = self::create($plans);
+            $id = $plan->$id;
+        }
+
+        return response()->json(['success' => true, 'data' => $plan], 200);
     }
-
-
     // Relation to user
     public function user(){
         return $this->belongsTo(User::class);
