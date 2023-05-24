@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserRequest extends FormRequest
+class AuthenticationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -20,6 +20,7 @@ class UserRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json(['success' => false, 'message' => $validator->errors()], 412));
     }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,10 +29,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'email'=> 'required',
-            'password'=> 'required',
-            'phone_number'=> 'required',
+            'email' => 'required',
+            'password' => 'required',
         ];
     }
 }
