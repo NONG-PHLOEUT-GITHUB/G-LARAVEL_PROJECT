@@ -57,6 +57,12 @@ class Drone extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Relation to map
+    public function map()
+    {
+        return $this->belongsTo(Map::class);
+    }
+
     // Relation to plan
     public function plan()
     {

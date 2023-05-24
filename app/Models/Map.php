@@ -63,7 +63,7 @@ class Map extends Model
         return $this->belongsTo(Drone::class);
     }
 
-       // Relation to farm
+    // Relation to farm
     public function farms():HasMany
     {
         return $this->hasMany(Farm::class);

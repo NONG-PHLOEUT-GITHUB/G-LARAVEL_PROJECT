@@ -31,7 +31,7 @@ class Location extends Model
             'longitude',
             'latitude',
             'drone_id',
-        ]);
+       ]);
 
         if ($id) {
             $location = self::find($id);
@@ -51,6 +51,8 @@ class Location extends Model
     public function maps(){
         return $this->hasMany(Map::class);
     }
+
+    // Relation to drone
     public function drone(){
         return $this->belongsTo(Drone::class);
     }

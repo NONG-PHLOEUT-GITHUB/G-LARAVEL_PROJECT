@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MapRequest;
 use App\Http\Resources\ShowMapRescource;
 use App\Models\Farm;
 use App\Models\Map;
@@ -22,7 +23,7 @@ class MapController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MapRequest $request)
     {
         $map = Map::store($request);
         return $map;
@@ -41,7 +42,7 @@ class MapController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(MapRequest $request, string $id)
     {
         $map = Map::store($request, $id);
         return $map;
