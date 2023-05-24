@@ -63,15 +63,23 @@ class MapController extends Controller
     public function downloadMapPhoto($mapName, $farmId)
     {
 
+        // $map = Map::where('name', $mapName)
+        //     ->whereHas('farms', function ($query) use ($farmId) {
+        //         $query->where('id', $farmId);
+        //     })->with('farms')->first();
         $map = Map::where('name', $mapName)
-            ->whereHas('farms', function ($query) use ($farmId) {
-                $query->where('id', $farmId);
-            })->with('farms')->first();
+        ->whereHas('farms', function ($query) use ($farmId) {
+            $query->where('id', $farmId);
+        })
+        ->with(['farms' => function ($query) use ($farmId) {
+            $query->where('id', $farmId);
+        }])
+        ->first();
 
         if ($map === null) {
             return response()->json(['message' => 'No map found.'], 404);
         }else{
-            return response()->json(['status' => 'success', 'maps' => $map], 202);
+            return response()->json(['status' => 'success', 'maps' => $map->image], 202);
         }
 
         
@@ -80,10 +88,18 @@ class MapController extends Controller
     public function deleteMapPhoto($mapName, $farmId)
     {
 
+        // $map = Map::where('name', $mapName)
+        //     ->whereHas('farms', function ($query) use ($farmId) {
+        //         $query->where('id', $farmId);
+        //     })->with('farms')->get();
         $map = Map::where('name', $mapName)
-            ->whereHas('farms', function ($query) use ($farmId) {
-                $query->where('id', $farmId);
-            })->with('farms')->first();
+        ->whereHas('farms', function ($query) use ($farmId) {
+            $query->where('id', $farmId);
+        })
+        ->with(['farms' => function ($query) use ($farmId) {
+            $query->where('id', $farmId);
+        }])
+        ->first();
 
         if ($map === null) {
             return response()->json(['message' => 'No map found.'], 404);
