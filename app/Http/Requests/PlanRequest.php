@@ -33,7 +33,6 @@ class PlanRequest extends FormRequest
             'spray_density' => 'required',
             'plan_description' => 'required',
             'user_id' => 'required',
-            'map_id' => 'required',
         ];
     }
 }
