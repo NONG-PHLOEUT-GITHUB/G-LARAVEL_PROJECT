@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FarmController;
 use App\Http\Controllers\PlanController;
@@ -76,3 +77,6 @@ Route::get('/maps/map_name/farm_id',[MapController::class,'show']);
 // Map controller
 Route::get('/download_maps/{mapName}/{farmId}',  [MapController::class,'downloadMapPhoto']);
 Route::delete('/delete_maps/{mapName}/{farmId}',  [MapController::class,'deleteMapPhoto']);
+
+Route::post('/login', [AuthenticationController::class, 'login']);
+Route::delete('/logout', [AuthenticationController::class, 'logout']);
