@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Requests\InstructionRequest;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -26,6 +27,7 @@ class ShowDroneRescource extends JsonResource
             'maps' => MapResource::collection($this->maps),
             'plan' => new PlanResource($this->plan),
             'location' => LocationRescource::collection($this->locations),
+            'instructions'=> InstructionResource::collection($this->instructions),
         ];
     }
 }

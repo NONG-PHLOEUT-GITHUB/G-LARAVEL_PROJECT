@@ -59,5 +59,11 @@ class Plan extends Model
     public function drones():HasMany{
         return $this->hasMany(Drone::class);
     }
+
+    // plan has many instruction 
+     public function instructions():HasMany
+     {
+         return $this->hasMany(Instruction::class);
+    }
 }
 

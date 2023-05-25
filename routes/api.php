@@ -3,12 +3,15 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\InstructionController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MapController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+use function PHPUnit\Framework\returnSelf;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +28,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:sanctum'])->group(function(){
 
-    // user logout
+Route::post('/register',[AuthenticationController::class, 'register']);
+Route::post('/login', [AuthenticationController::class, 'login']);
+
+Route::middleware(['auth:sanctum'])->group(function(){
+    Route::post('/drones',function(){
+            return "create a new drone";
+        });
     Route::post('/logout',[AuthenticationController::class, 'logout']);
 
     // user
@@ -65,28 +73,19 @@ Route::middleware(['auth:sanctum'])->group(function(){
 
 Route::get('/users',[UserController::class, 'index']);
 Route::get('/users/{id}',[UserController::class, 'show']);
-Route::post('/login', [AuthenticationController::class, 'login']);
-Route::post('/users',[UserController::class, 'store']);
-
-//Farms //###################################################
 
 Route::get('/farms',[FarmController::class, 'index']);
 Route::get('/farms/{id}',[FarmController::class, 'show']);
-
 
 // drones //###################################################
 
 Route::get('/drones',[DroneController::class, 'index']);
 Route::get('/drones/{id}',[DroneController::class, 'show']);
-Route::get('/drones/{id}/{location}', [DroneController::class, 'showLocation']);
-
-// location//###################################################
 
 Route::get('/locations',[LocationController::class, 'index']);
 Route::get('/locations/{id}',[LocationController::class, 'show']);
 
-// plan //###################################################
-
+// plan
 Route::get('/plans',[PlanController::class,'index']);
 Route::get('/plans/{id}',[PlanController::class,'show']);
 Route::get('/plans_name/{planname}',[PlanController::class,'showPlanName']);
@@ -97,9 +96,16 @@ Route::get('/maps/{id}',[MapController::class,'show']);
 Route::get('/maps',[MapController::class,'index']);
 Route::get('/maps/map_name/farm_id',[MapController::class,'show']);
 
-
 // Map //###################################################
 
 Route::get('/download_maps/{mapName}/{farmId}',  [MapController::class,'downloadMapPhoto']);
 Route::delete('/delete_maps/{mapName}/{farmId}',  [MapController::class,'deleteMapPhoto']);
 
+
+
+//instructions
+Route::get('/instructions',[InstructionController::class, 'index']);
+Route::get('/instructions/{id}',[InstructionController::class, 'show']);
+Route::post('/instructions',[InstructionController::class, 'store']);
+Route::put('/instructions/{id}',[InstructionController::class, 'update']);
+Route::delete('/instructions/{id}',[InstructionController::class, 'destroy']);
