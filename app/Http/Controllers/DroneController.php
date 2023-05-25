@@ -71,7 +71,15 @@ class DroneController extends Controller
         if ($drone === null) {
             return response()->json(['message' => 'No map found.'], 404);
         }else{
-            return response()->json(['status' => 'success', 'drones' => $drone], 202);
+            $location = $drone->locations->first();
+            $longitude = $location->longitude;
+            $latitude =  $location->latitude;   
+        
+            return response()->json(['status' => 'success','data'=>[
+                'location_id' => $location_id,
+                'latitude' =>$latitude,
+                'longitude' =>$longitude,
+            ]], 202);
         }
     
     }

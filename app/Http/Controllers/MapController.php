@@ -63,10 +63,11 @@ class MapController extends Controller
     public function downloadMapPhoto($mapName, $farmId)
     {
 
-        // $map = Map::where('name', $mapName)
-        //     ->whereHas('farms', function ($query) use ($farmId) {
-        //         $query->where('id', $farmId);
-        //     })->with('farms')->first();
+        $map = Map::where('name', $mapName)
+            ->whereHas('farms', function ($query) use ($farmId) {
+                $query->where('id', $farmId);
+            })->with('farms')->first();
+
         $map = Map::where('name', $mapName)
         ->whereHas('farms', function ($query) use ($farmId) {
             $query->where('id', $farmId);
@@ -87,11 +88,13 @@ class MapController extends Controller
     /// as a farmer want to delete request by map name and farm id
     public function deleteMapPhoto($mapName, $farmId)
     {
-
+        // dd($mapName);
         // $map = Map::where('name', $mapName)
         //     ->whereHas('farms', function ($query) use ($farmId) {
         //         $query->where('id', $farmId);
-        //     })->with('farms')->get();
+        //     })->with('farms')->get(); 
+
+
         $map = Map::where('name', $mapName)
         ->whereHas('farms', function ($query) use ($farmId) {
             $query->where('id', $farmId);

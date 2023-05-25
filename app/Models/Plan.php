@@ -14,6 +14,7 @@ class Plan extends Model
     protected $fillable = [
         'plan_name',
         'date_time',
+        'type',
         'spray_density',
         'plan_description',
         'user_id',
@@ -30,6 +31,7 @@ class Plan extends Model
         $plans = $request->only([
             'plan_name',
             'date_time',
+            'type',
             'spray_density',
             'plan_description',
             'user_id',

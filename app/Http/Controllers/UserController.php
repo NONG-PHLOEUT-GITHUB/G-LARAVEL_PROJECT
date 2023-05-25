@@ -27,7 +27,7 @@ class UserController extends Controller
     {
        
         $user = User::store($request);
-        return response()->json(['success' =>true, 'data' => $user],201);
+        return $user;
     }
 
     /**

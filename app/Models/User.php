@@ -36,7 +36,10 @@ class User extends Authenticatable
         ]);
         $user['password'] = Hash::make($user['password']);
         $user = self::updateOrCreate(['id'=> $id],$user);
-        return $user;
+        
+        $token = null;
+        $token = $user->createToken('TOKEN', ['select', 'create', 'update', 'delete']);
+        return response()->json(['success' =>true, 'data' => $user,'token' => $token->plainTextToken],201);
     }
    
 

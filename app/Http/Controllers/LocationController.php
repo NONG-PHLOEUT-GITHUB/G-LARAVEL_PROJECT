@@ -27,7 +27,7 @@ class LocationController extends Controller
     {
         $location = Location::store($request);
 
-        return response()->json(['status' =>'success', 'location' => $location],202);
+        return $location;
     }
 
     /**
