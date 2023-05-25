@@ -9,6 +9,7 @@ use App\Http\Resources\ShowDroneRescource;
 use App\Models\Drone;
 use App\Models\Location;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DroneController extends Controller
 {
@@ -26,8 +27,18 @@ class DroneController extends Controller
      */
     public function store(DroneRequest $request)
     {
+        // $drone = Drone::store($request);
+        // return $drone;
+
+        // $drone = Auth::guard('api')->user();
+        // $token = $request->header('Authorization');
+
         $drone = Drone::store($request);
-        return $drone;
+        return response()->json([
+            'message' => 'Drone created successfully',
+            'data' => $drone
+        ], 201);
+
     }
 
     /**

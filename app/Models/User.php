@@ -26,18 +26,18 @@ class User extends Authenticatable
         'password',
         'phone_number',
     ];
-    public static function store($request , $id = null){
+    // public static function store($request , $id = null){
 
-        $user = $request->only([
-            'name',
-            'email',
-            'password',
-            'phone_number',
-        ]);
-        $user['password'] = Hash::make($user['password']);
-        $user = self::updateOrCreate(['id'=> $id],$user);
-        return $user;
-    }
+    //     $user = $request->only([
+    //         'name',
+    //         'email',
+    //         'password',
+    //         'phone_number',
+    //     ]);
+    //     $user['password'] = Hash::make($user['password']);
+    //     $user = self::updateOrCreate(['id'=> $id],$user);
+    //     return $user;
+    // }
    
 
     /**
