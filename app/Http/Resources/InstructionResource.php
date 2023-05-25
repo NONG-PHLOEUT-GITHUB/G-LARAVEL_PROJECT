@@ -20,8 +20,6 @@ class InstructionResource extends JsonResource
             'landing'=>$this->landing,
             'return_back'=>$this->return_back,
             'recharnge'=>$this->recharnge,
-            // 'drone_id'=>$this->drone,
-            // 'plan_id'=>$this->plan,
         ];
     }
 }

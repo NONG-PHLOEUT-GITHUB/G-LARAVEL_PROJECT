@@ -66,6 +66,10 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/maps',[MapController::class,'store']);
     Route::put('/maps/{id}',[MapController::class,'update']);
     Route::delete('/maps/{id}',[MapController::class,'destroy']);
+    /// insstructions
+    Route::post('/instructions',[InstructionController::class, 'store']);
+    Route::put('/instructions/{id}',[InstructionController::class, 'update']);
+    Route::delete('/instructions/{id}',[InstructionController::class, 'destroy']);
 
 });
 
@@ -106,6 +110,4 @@ Route::delete('/delete_maps/{mapName}/{farmId}',  [MapController::class,'deleteM
 //instructions
 Route::get('/instructions',[InstructionController::class, 'index']);
 Route::get('/instructions/{id}',[InstructionController::class, 'show']);
-Route::post('/instructions',[InstructionController::class, 'store']);
-Route::put('/instructions/{id}',[InstructionController::class, 'update']);
-Route::delete('/instructions/{id}',[InstructionController::class, 'destroy']);
+
