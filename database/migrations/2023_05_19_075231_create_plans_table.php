@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('plan_name');
             $table->dateTime('date_time');
+            $table->integer('type');
             $table->integer('spray_density');
             $table->string('plan_description');
             $table->foreignId('user_id')->constrained(table:'users')->onDelete('cascade');

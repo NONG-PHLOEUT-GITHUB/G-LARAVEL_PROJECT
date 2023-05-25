@@ -87,7 +87,7 @@ Route::get('/locations/{id}',[LocationController::class, 'show']);
 
 // plan
 Route::get('/plans',[PlanController::class,'index']);
-Route::get('/plans/{planname}',[PlanController::class,'showPlanName']);
+Route::get('/plans_name/{planname}',[PlanController::class,'showPlanName']);
 Route::get('/plans/{id}',[PlanController::class,'show']);
 
 // map //

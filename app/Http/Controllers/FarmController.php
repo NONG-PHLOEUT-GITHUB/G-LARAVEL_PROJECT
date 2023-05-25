@@ -26,7 +26,7 @@ class FarmController extends Controller
     public function store(FarmRequest $request)
     {
         $farm = Farm::store($request);
-        return response()->json(['success' =>true, 'data' => $farm],201);
+        return $farm;
     }
 
     /**
