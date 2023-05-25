@@ -104,7 +104,8 @@ class MapController extends Controller
         if ($map === null) {
             return response()->json(['message' => 'No map found.'], 404);
         }else {
-            $map->delete(); // delete the map record
+            $image = $map->image; 
+            $image->delete(); // delete the map record
             return response()->json(['message' => 'Map has been deleted.']);
         }
 

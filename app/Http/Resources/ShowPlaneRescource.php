@@ -21,6 +21,7 @@ class ShowPlaneRescource extends JsonResource
             'date_time'=> $this->date_time,
             'spray_density'=> $this->spray_density,
             'plan_description' => $this->plan_description,
+            'user_id' => $this->user_id,
             'user' => new UserResource($this->user),
             'drones' => DroneResource::collection($this->drones),
         ];
