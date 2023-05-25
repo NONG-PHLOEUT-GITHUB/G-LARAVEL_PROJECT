@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DroneController;
 use App\Http\Controllers\FarmController;
+use App\Http\Controllers\InstructionController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocationController;
@@ -118,3 +119,10 @@ Route::delete('/delete_maps/{mapName}/{farmId}',  [MapController::class,'deleteM
 Route::post('/login', [AuthenticationController::class, 'login']);
 // Route::post('/logout', [AuthenticationController::class, 'logout']);
 
+
+//instructions
+Route::get('/instructions',[InstructionController::class, 'index']);
+Route::get('/instructions/{id}',[InstructionController::class, 'show']);
+Route::post('/instructions',[InstructionController::class, 'store']);
+Route::put('/instructions/{id}',[InstructionController::class, 'update']);
+Route::delete('/instructions/{id}',[InstructionController::class, 'destroy']);

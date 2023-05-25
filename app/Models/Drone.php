@@ -62,6 +62,12 @@ class Drone extends Model
     {
         return $this->belongsTo(Plan::class);
     }
+    
+    // Relation to instruction
+    public function instructions():HasMany
+    {
+        return $this->hasMany(Instruction::class);
+    }
 
     // Relation to many location
     public function locations(): HasMany
