@@ -75,7 +75,7 @@ class MapController extends Controller
         if ($map === null) {
             return response()->json(['message' => 'No map found.'], 404);
         } else {
-            return response()->json(['status' => 'success', 'maps' => $map->image], 202);
+            return response()->json(['status' => 'success', 'image' => $map->image], 202);
         }
     }
 
