@@ -32,12 +32,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register',[AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
 
+// Route::post('/users',[UserController::class, 'store']);
+
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/drones',function(){
-            return "create a new drone";
-        });
-    Route::post('/logout',[AuthenticationController::class, 'logout']);
-
+        return "create a new drone";
+        Route::post('/logout',[AuthenticationController::class, 'logout']);
+    });
+    
     // user
     Route::put('/users/{id}',[UserController::class, 'update']);
     Route::delete('/users/{id}',[UserController::class, 'destroy']);
