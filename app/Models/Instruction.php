@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Instruction extends Model
 {
     use HasFactory;
+    
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     protected $fillable = [
         'tak_off',
         'landing',

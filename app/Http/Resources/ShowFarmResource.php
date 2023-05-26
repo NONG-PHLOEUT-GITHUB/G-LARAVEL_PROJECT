@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Controllers\FarmController;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,10 +17,12 @@ class ShowFarmResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'farm_name'=>$this->name,
+            'farm_name'=>$this->farm_name,
             'description'=>$this->description,
-            'user_id'=>$this->user,
-            'map_id'=>$this->map,
+            'create_by_id'=>$this->user_id,
+            'map_id'=>$this->map_id,
+            'user'=>$this->user,
+            'map'=>$this->map,
         ];
     }
 }

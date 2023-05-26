@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\FarmRequest;
 use App\Http\Resources\FarmResource;
+use App\Http\Resources\ShowFarmResource;
 use App\Models\Farm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,6 +36,7 @@ class FarmController extends Controller
     public function show(string $id)
     {
         $farm = Farm::find($id);
+        $farm = new ShowFarmResource($farm);
         return response()->json(['success' =>true, 'data' => $farm],200);
     }
 
@@ -44,7 +46,7 @@ class FarmController extends Controller
     public function update(FarmRequest $request, string $id)
     {
         $farm = Farm::store($request,$id);
-        return response()->json(['success' =>true, 'data' => $farm],200);
+        return $farm;
     }
 
     /**

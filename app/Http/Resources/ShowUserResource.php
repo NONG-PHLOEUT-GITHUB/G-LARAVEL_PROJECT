@@ -18,11 +18,10 @@ class ShowUserResource extends JsonResource
             'id'=> $this->id,
             'name'=>$this->name,
             'email'=>$this->email,
-            'password'=>$this->password,
-            'number'=>$this->phone->number ?? null,
-            'farm'=>$this->farms,
-            'drone'=>$this->drones,
-            'plan'=>$this->plans,
+            'phone_number'=>$this->phone_number ?? null,
+            'farms'=>$this->farms,
+            'drones'=>$this->drones,
+            'plans'=>$this->plans,
         ];
 
     }

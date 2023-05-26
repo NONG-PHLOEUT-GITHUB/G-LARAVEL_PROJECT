@@ -18,7 +18,6 @@ class LocationRescource extends JsonResource
             'id' => $this->id,
             'longitude'=>$this->longitude,
             'latitude'=>$this->latitude,
-            'map_id' => $this->map_id,
         ];
     }
 }

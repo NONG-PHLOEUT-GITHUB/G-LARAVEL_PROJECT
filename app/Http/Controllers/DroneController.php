@@ -27,17 +27,9 @@ class DroneController extends Controller
      */
     public function store(DroneRequest $request)
     {
-        // $drone = Drone::store($request);
-        // return $drone;
-
-        // $drone = Auth::guard('api')->user();
-        // $token = $request->header('Authorization');
-
+     
         $drone = Drone::store($request);
-        return response()->json([
-            'message' => 'Drone created successfully',
-            'data' => $drone
-        ], 201);
+        return $drone;
 
     }
 
