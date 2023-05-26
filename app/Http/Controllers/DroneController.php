@@ -86,5 +86,20 @@ class DroneController extends Controller
         }
     
     }
+    public function updateInstruction($drone_id)
+    {
+        $drone = Drone::where('id', $drone_id)->first();
 
+        $instruction = $drone->instructions();
+        $instruction->update([
+            'tak_off'=>request('tak_off'),
+            'landing'=>request('landing'),
+            'return_back'=>request('return_back'),
+            'recharnge'=>request('recharnge'),
+            'drone_id'=>request('drone_id'),
+            'plan_id'=>request('plan_id'),
+        ]);
+
+        return $instruction->get();
+    }
 }

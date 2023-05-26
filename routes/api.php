@@ -112,3 +112,5 @@ Route::post('/post_map_images/{mapName}/{farmId}',  [MapController::class,'addMa
 Route::get('/instructions',[InstructionController::class, 'index']);
 Route::get('/instructions/{id}',[InstructionController::class, 'show']);
 
+Route::put('/update_instructions/{drone_id}',[DroneController::class,'updateInstruction']);
+
