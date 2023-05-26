@@ -27,10 +27,10 @@ class InstructionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tak_off'=>'required',
+            'take_off'=>'required',
             'landing'=>'required',
             'return_back'=>'required',
-            'recharnge'=>'required',
+            'recharge'=>'required',
             'drone_id'=>'required',
             'plan_id'=>'required',
         ];

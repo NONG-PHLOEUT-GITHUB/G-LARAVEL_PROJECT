@@ -32,12 +32,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register',[AuthenticationController::class, 'register']);
 Route::post('/login', [AuthenticationController::class, 'login']);
 
+// Route::post('/users',[UserController::class, 'store']);
+
 Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/drones',function(){
-            return "create a new drone";
-        });
-    Route::post('/logout',[AuthenticationController::class, 'logout']);
-
+        return "create a new drone";
+        Route::post('/logout',[AuthenticationController::class, 'logout']);
+    });
+    
     // user
     Route::put('/users/{id}',[UserController::class, 'update']);
     Route::delete('/users/{id}',[UserController::class, 'destroy']);
@@ -98,7 +100,7 @@ Route::get('/plans_name/{planname}',[PlanController::class,'showPlanName']);
 
 Route::get('/maps/{id}',[MapController::class,'show']);
 Route::get('/maps',[MapController::class,'index']);
-Route::get('/maps/map_name/farm_id',[MapController::class,'show']);
+Route::get('/maps/map_name/{farm_id}',[MapController::class,'show']);
 
 // Map //###################################################
 

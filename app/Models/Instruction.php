@@ -15,20 +15,20 @@ class Instruction extends Model
     ];
 
     protected $fillable = [
-        'tak_off',
+        'take_off',
         'landing',
         'return_back',
-        'recharnge',
+        'recharge',
         'drone_id',
         'plan_id',
     ];
     public static function store($request, $id = null)
     {
         $instructions = $request->only([
-            'tak_off',
+            'take_off',
             'landing',
             'return_back',
-            'recharnge',
+            'recharge',
             'drone_id',
             'plan_id',
     ]);

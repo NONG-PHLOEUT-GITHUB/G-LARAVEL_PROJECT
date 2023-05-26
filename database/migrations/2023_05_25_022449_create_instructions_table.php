@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('instructions', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tak_off');
+            $table->dateTime('take_off');
             $table->dateTime('landing');
             $table->dateTime('return_back');
-            $table->integer('recharnge');
+            $table->integer('recharge');
             $table->foreignId('drone_id')->constrained(table:'drones')->onDelete('cascade');
             $table->foreignId('plan_id')->constrained(table:'plans')->onDelete('cascade');
             $table->timestamps();
