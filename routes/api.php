@@ -100,7 +100,7 @@ Route::get('/plans_name/{planname}',[PlanController::class,'showPlanName']);
 
 Route::get('/maps/{id}',[MapController::class,'show']);
 Route::get('/maps',[MapController::class,'index']);
-Route::get('/maps/map_name/farm_id',[MapController::class,'show']);
+Route::get('/maps/map_name/{farm_id}',[MapController::class,'show']);
 
 // Map //###################################################
 
