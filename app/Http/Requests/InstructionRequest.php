@@ -33,6 +33,7 @@ class InstructionRequest extends FormRequest
             'recharge'=>'required',
             'drone_id'=>'required',
             'plan_id'=>'required',
+            'user_id'=>'required',
         ];
     }
 }

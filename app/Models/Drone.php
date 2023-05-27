@@ -11,6 +11,7 @@ class Drone extends Model
     use HasFactory;
 
     protected $fillable = [
+        'drone_id',
         'drone_type',
         'drone_name',
         'battery',
@@ -28,6 +29,7 @@ class Drone extends Model
     {
 
         $drones = $request->only([
+            "drone_id",
             "drone_type",
             "drone_name",
             "battery",

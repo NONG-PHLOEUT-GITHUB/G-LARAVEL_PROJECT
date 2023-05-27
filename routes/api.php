@@ -90,11 +90,13 @@ Route::get('/farms/{id}',[FarmController::class, 'show']);
 // drones //###################################################
 
 Route::get('/drones',[DroneController::class, 'index']);
+// Route::get('/drones/{id}',[DroneController::class, 'show']);
 Route::get('/drones/{id}',[DroneController::class, 'show']);
 Route::get('/show_locations/{drone_id}/{location_id}',[DroneController::class, 'showLocation']);
 
 Route::get('/locations',[LocationController::class, 'index']);
 Route::get('/locations/{id}',[LocationController::class, 'show']);
+
 
 // plan
 Route::get('/plans',[PlanController::class,'index']);

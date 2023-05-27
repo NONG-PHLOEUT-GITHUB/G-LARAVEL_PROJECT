@@ -21,6 +21,7 @@ class Instruction extends Model
         'recharge',
         'drone_id',
         'plan_id',
+        'user_id',
     ];
     public static function store($request, $id = null)
     {
@@ -31,7 +32,8 @@ class Instruction extends Model
             'recharge',
             'drone_id',
             'plan_id',
-        ]);
+            'user_id',
+    ]);
 
         if ($id) {
             $instruction = self::find($id);
@@ -55,5 +57,11 @@ class Instruction extends Model
     public function plan()
     {
         return $this->belongsTo(Plan::class);
+    }
+
+    // Relation to user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
