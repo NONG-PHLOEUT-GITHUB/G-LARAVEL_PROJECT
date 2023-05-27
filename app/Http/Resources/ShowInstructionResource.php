@@ -23,6 +23,7 @@ class ShowInstructionResource extends JsonResource
             'recharge'=>$this->recharge,
             'drone_id'=>$this->drone,
             'plan_id'=>$this->plan,
+            'user_id'=>$this->user,
             'plan' => new PlanResource($this->plan),
             'drone' =>new DroneResource($this->drone),
         ];

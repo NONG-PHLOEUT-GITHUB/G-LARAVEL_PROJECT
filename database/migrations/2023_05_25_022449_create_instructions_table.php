@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('recharge');
             $table->foreignId('drone_id')->constrained(table:'drones')->onDelete('cascade');
             $table->foreignId('plan_id')->constrained(table:'plans')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained(table:'users')->onDelete('cascade');
             $table->timestamps();
         });
     }

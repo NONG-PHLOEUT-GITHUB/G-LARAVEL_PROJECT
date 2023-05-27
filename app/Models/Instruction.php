@@ -21,6 +21,7 @@ class Instruction extends Model
         'recharge',
         'drone_id',
         'plan_id',
+        'user_id',
     ];
     public static function store($request, $id = null)
     {
@@ -31,6 +32,7 @@ class Instruction extends Model
             'recharge',
             'drone_id',
             'plan_id',
+            'user_id',
     ]);
 
     if ($id) {
@@ -46,14 +48,21 @@ class Instruction extends Model
 
     return response()->json(['success' => true, 'data' => $instruction], 200);
     }
-       // Relation to drone
-       public function drone()
-       {
-           return $this->belongsTo(Drone::class);
-       }
-          // Relation to plan
+    // Relation to drone
+    public function drone()
+    {
+        return $this->belongsTo(Drone::class);
+    }
+
+    // Relation to plan
     public function plan()
     {
         return $this->belongsTo(Plan::class);
+    }
+
+    // Relation to user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
