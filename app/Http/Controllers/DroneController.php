@@ -39,6 +39,9 @@ class DroneController extends Controller
     public function show(string $id)
     {
         $drone = Drone::find($id);
+        if(!$drone){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $drone = new ShowDroneRescource($drone);  
         return response()->json(['status' =>'success', 'data' => $drone],202);
     }
@@ -58,27 +61,30 @@ class DroneController extends Controller
     public function destroy(string $id)
     {
         $drone = Drone::find($id);
+        if(!$drone){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $drone->delete();
         return response()->json(['delete success'=>true, 'data'=>$drone],200);
         
     }
 
-    public function showLocation($id , $location_id)
+    public function showLocation($drone_id , $location_id)
     {
     
-        $drone = Drone::where('id', $id)
+        $drone = Drone::where('id', $drone_id)
             ->whereHas('locations', function ($query) use ($location_id) {
                 $query->where('id', $location_id);
             })->with('locations')->first();
 
         if ($drone === null) {
-            return response()->json(['message' => 'No map found.'], 404);
+            return response()->json(['message' => 'The record with ID ' . $drone_id .' or '.$location_id. ' was not found.'], 404);
         }else{
             $location = $drone->locations->first();
             $longitude = $location->longitude;
             $latitude =  $location->latitude;   
         
-            return response()->json(['status' => 'success','data'=>[
+            return response()->json(['message' => 'success','data'=>[
                 'location_id' => $location_id,
                 'latitude' =>$latitude,
                 'longitude' =>$longitude,
@@ -86,20 +92,29 @@ class DroneController extends Controller
         }
     
     }
-    public function updateInstruction($drone_id)
+  
+    public function updateInstruction($drone_id, Request $request)
     {
-        $drone = Drone::where('id', $drone_id)->first();
-
-        $instruction = $drone->instructions();
-        $instruction->update([
-            'tak_off'=>request('tak_off'),
-            'landing'=>request('landing'),
-            'return_back'=>request('return_back'),
-            'recharnge'=>request('recharnge'),
-            'drone_id'=>request('drone_id'),
-            'plan_id'=>request('plan_id'),
-        ]);
-
-        return $instruction->get();
+       
+        $drone = Drone::where('id', $drone_id)->with('instructions')->first();
+        $last_instruction = $drone->instructions()->latest()->first();
+        
+        if(!$last_instruction)
+        {
+            return response()->json(['message' => 'drone id found.'], 404);
+        }else{
+            $last_instruction->update([
+                'take_off' => $request->input('take_off'),
+                'landing' => $request->input('landing'),
+                'return_back' => $request->input('return_back'),
+                'recharge' => $request->input('recharge'),
+                'drone_id' => $request->input('drone_id'),
+                'plan_id' => $request->input('plan_id'),
+            ]);
+      
+        }
+     
+       
+        return response()->json(['Update successfully' => true,'data'=> $last_instruction], 202);
     }
 }

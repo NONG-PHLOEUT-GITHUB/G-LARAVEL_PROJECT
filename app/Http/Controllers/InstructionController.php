@@ -27,7 +27,7 @@ class InstructionController extends Controller
     {   
         $instruction = Instruction::store($request);
         return $instruction;
-        // return response()->json(['success' =>true, 'data' => $instruction],201);
+
     }
 
     /**
@@ -36,6 +36,9 @@ class InstructionController extends Controller
     public function show(string $id)
     {
         $instruction = Instruction::find($id);
+        if(!$instruction){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $instruction = new ShowInstructionResource($instruction);
         return response()->json(['success' =>true, 'data' => $instruction],200);
     }
@@ -55,7 +58,10 @@ class InstructionController extends Controller
     public function destroy(string $id)
     {
         $instruction =Instruction::find($id);
+        if(!$instruction){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $instruction->delete();
-        return response()->json(['success' =>true, 'message' => 'Data delete successfully'],200);
+        return response()->json(['success' =>true, 'message' => 'Data delete successfully','data'=>$instruction],200);
     }
 }

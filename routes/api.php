@@ -28,18 +28,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::post('/register',[AuthenticationController::class, 'register']);
-Route::post('/login', [AuthenticationController::class, 'login']);
-
-// Route::post('/users',[UserController::class, 'store']);
-
 Route::middleware(['auth:sanctum'])->group(function(){
-    Route::post('/drones',function(){
-        return "create a new drone";
-        Route::post('/logout',[AuthenticationController::class, 'logout']);
-    });
-    
+
+    Route::post('/logout',[AuthenticationController::class, 'logout']);
+
     // user
     Route::put('/users/{id}',[UserController::class, 'update']);
     Route::delete('/users/{id}',[UserController::class, 'destroy']);
@@ -68,12 +60,24 @@ Route::middleware(['auth:sanctum'])->group(function(){
     Route::post('/maps',[MapController::class,'store']);
     Route::put('/maps/{id}',[MapController::class,'update']);
     Route::delete('/maps/{id}',[MapController::class,'destroy']);
+    Route::post('/post_map_images/{map_name}/{farm_id}',  [MapController::class,'addMapImage']);
+    Route::delete('/delete_map_images/{map_name}/{farm_id}',  [MapController::class,'deleteMapImage']);
+
     /// insstructions
     Route::post('/instructions',[InstructionController::class, 'store']);
     Route::put('/instructions/{id}',[InstructionController::class, 'update']);
     Route::delete('/instructions/{id}',[InstructionController::class, 'destroy']);
+    Route::put('/update_instructions/{drone_id}',[DroneController::class,'updateInstruction']);
+
+
 
 });
+// AuthenticationController#################################
+
+Route::post('/register',[AuthenticationController::class, 'register']);
+Route::post('/users',[UserController::class, 'store']);
+Route::post('/login', [AuthenticationController::class, 'login']);
+
 
 //Users //###################################################
 
@@ -87,6 +91,7 @@ Route::get('/farms/{id}',[FarmController::class, 'show']);
 
 Route::get('/drones',[DroneController::class, 'index']);
 Route::get('/drones/{id}',[DroneController::class, 'show']);
+Route::get('/show_locations/{drone_id}/{location_id}',[DroneController::class, 'showLocation']);
 
 Route::get('/locations',[LocationController::class, 'index']);
 Route::get('/locations/{id}',[LocationController::class, 'show']);
@@ -94,25 +99,15 @@ Route::get('/locations/{id}',[LocationController::class, 'show']);
 // plan
 Route::get('/plans',[PlanController::class,'index']);
 Route::get('/plans/{id}',[PlanController::class,'show']);
-Route::get('/plans_name/{planname}',[PlanController::class,'showPlanName']);
+Route::get('/plans_name/{plan_name}',[PlanController::class,'getPlanName']);
 
 // map //###################################################
 
 Route::get('/maps/{id}',[MapController::class,'show']);
 Route::get('/maps',[MapController::class,'index']);
-Route::get('/maps/map_name/{farm_id}',[MapController::class,'show']);
-
-// Map //###################################################
-
-Route::get('/download_map_images/{mapName}/{farmId}',  [MapController::class,'downloadMapImage']);
-Route::delete('/delete_map_images/{mapName}/{farmId}',  [MapController::class,'deleteMapImage']);
-Route::post('/post_map_images/{mapName}/{farmId}',  [MapController::class,'addMapImage']);
-
-
+Route::get('/download_map_images/{map_name}/{farm_id}',  [MapController::class,'downloadMapImage']);
 
 //instructions
 Route::get('/instructions',[InstructionController::class, 'index']);
 Route::get('/instructions/{id}',[InstructionController::class, 'show']);
-
-Route::put('/update_instructions/{drone_id}',[DroneController::class,'updateInstruction']);
 

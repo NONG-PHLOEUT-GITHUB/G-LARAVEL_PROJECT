@@ -36,6 +36,9 @@ class FarmController extends Controller
     public function show(string $id)
     {
         $farm = Farm::find($id);
+        if(!$farm){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $farm = new ShowFarmResource($farm);
         return response()->json(['success' =>true, 'data' => $farm],200);
     }
@@ -55,7 +58,10 @@ class FarmController extends Controller
     public function destroy(string $id)
     {
         $farm = Farm::find($id);
+        if(!$farm){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $farm->delete();
-        return response()->json(['success' =>true, 'message' => 'Data delete successfully'],200);
+        return response()->json(['success' =>true, 'message' => 'Data delete successfully',$farm],200);
     }
 }

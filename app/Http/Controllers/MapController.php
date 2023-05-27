@@ -35,6 +35,9 @@ class MapController extends Controller
     public function show(string $id)
     {
         $maps = Map::find($id);
+        if(!$maps){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $maps = new ShowMapRescource($maps);
         return response()->json(['status' => 'success', 'maps' => $maps], 202);
     }
@@ -54,26 +57,29 @@ class MapController extends Controller
     public function destroy(string $id)
     {
         $map = Map::find($id);
+        if(!$map){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $map->delete();
         return response()->json(['delete success' => true, 'data' => $map], 200);
     }
 
 
 
-    public function downloadMapImage($mapName, $farmId)
+    public function downloadMapImage($map_name, $farm_id)
     {
         // delete specific farm id because in map has many farm 
-        $map = Map::where('name', $mapName)
-            ->whereHas('farms', function ($query) use ($farmId) {
-                $query->where('id', $farmId);
+        $map = Map::where('name', $map_name)
+            ->whereHas('farms', function ($query) use ($farm_id) {
+                $query->where('id', $farm_id);
             })
-            ->with(['farms' => function ($query) use ($farmId) {
-                $query->where('id', $farmId);
+            ->with(['farms' => function ($query) use ($farm_id) {
+                $query->where('id', $farm_id);
             }])
             ->first();
 
         if ($map === null) {
-            return response()->json(['message' => 'No map found.'], 404);
+            return response()->json(['message' => 'The record with ID ' . $map_name .' or '. $farm_id. ' was not found.'], 404);
         } else {
             return response()->json(['status' => 'success', 'image' => $map->image], 202);
         }
@@ -81,20 +87,20 @@ class MapController extends Controller
 
 
     /// as a farmer want to delete request by map name and farm id
-    public function deleteMapImage($mapName, $farmId)
+    public function deleteMapImage($map_name, $farm_id)
     {
         // delete specific farm id because in map has many farm 
-        $map = Map::where('name', $mapName)
-            ->whereHas('farms', function ($query) use ($farmId) {
-                $query->where('id', $farmId);
+        $map = Map::where('name', $map_name)
+            ->whereHas('farms', function ($query) use ($farm_id) {
+                $query->where('id', $farm_id);
             })
-            ->with(['farms' => function ($query) use ($farmId) {
-                $query->where('id', $farmId);
+            ->with(['farms' => function ($query) use ($farm_id) {
+                $query->where('id', $farm_id);
             }])
             ->first();
 
         if ($map === null) {
-            return response()->json(['message' => 'No map found.'], 404);
+            return response()->json(['message' => 'The record with ID ' . $map_name .' or '. $farm_id. ' was not found.'], 404);
         } else {
             $map->image = null;
             $map->save();
@@ -104,18 +110,18 @@ class MapController extends Controller
 
 
     ///as drone add new image on map and farm id
-    public function addMapImage(Request $request, $mapName, $farmId)
+    public function addMapImage(Request $request, $map_name, $farm_id)
     {
-        $map = Map::where('name', $mapName)
-            ->whereHas('farms', function ($query) use ($farmId) {
-                $query->where('id', $farmId);
-            })->with(['farms' => function ($query) use ($farmId) {
-                $query->where('id', $farmId);
+        $map = Map::where('name', $map_name)
+            ->whereHas('farms', function ($query) use ($farm_id) {
+                $query->where('id', $farm_id);
+            })->with(['farms' => function ($query) use ($farm_id) {
+                $query->where('id', $farm_id);
             }])
             ->first();
 
         if (!$map) {
-            return response()->json(['message' => 'Map not found'], 404);
+            return response()->json(['message' => 'The record with ID ' . $map_name .' or '. $farm_id. ' was not found.'], 404);
         }
 
         $map->image = $request->input('image');

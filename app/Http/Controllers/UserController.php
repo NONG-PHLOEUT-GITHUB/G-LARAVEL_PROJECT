@@ -37,6 +37,9 @@ class UserController extends Controller
     public function show(string $id)
     {
         $user = User::find($id);
+        if(!$user){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $user = new ShowUserResource($user);
         return response()->json(['success' =>true, 'data' => $user],200);
     }
@@ -48,7 +51,7 @@ class UserController extends Controller
     {
 
         $user = User::store($request,$id);
-        return response()->json(['success' =>true, 'data' => $user],200);
+        return $user;
     }
 
     /**
@@ -57,7 +60,10 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         $user = User::find($id);
+        if(!$user){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $user->delete();
-        return response()->json(['success' =>true, 'message' => 'Data delete successfully'],200);
+        return response()->json(['success' =>true, 'message' => 'Data delete successfully','data'=>$user],200);
     }
 }

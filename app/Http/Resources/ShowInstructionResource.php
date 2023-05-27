@@ -17,12 +17,12 @@ class ShowInstructionResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'tak_off'=>$this->tak_off,
+            'take_off'=>$this->take_off,
             'landing'=>$this->landing,
             'return_back'=>$this->return_back,
-            'recharnge'=>$this->recharnge,
-            'drone_id'=>$this->drone,
-            'plan_id'=>$this->plan,
+            'recharge'=>$this->recharge,
+            'drone_id'=>$this->drone_id,
+            'plan_id'=>$this->plan_id,
             'plan' => new PlanResource($this->plan),
             'drone' =>new DroneResource($this->drone),
         ];

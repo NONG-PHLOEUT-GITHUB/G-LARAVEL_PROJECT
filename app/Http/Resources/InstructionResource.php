@@ -16,10 +16,10 @@ class InstructionResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'tak_off'=>$this->tak_off,
+            'take_off'=>$this->take_off,
             'landing'=>$this->landing,
             'return_back'=>$this->return_back,
-            'recharnge'=>$this->recharnge,
+            'recharge'=>$this->recharge,
         ];
     }
 }
