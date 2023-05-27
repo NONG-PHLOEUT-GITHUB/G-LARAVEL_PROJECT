@@ -38,9 +38,13 @@ class DroneController extends Controller
      */
     public function show(string $id)
     {
-        $drone = Drone::find($id);
-        $drone = new ShowDroneRescource($drone);  
-        return response()->json(['status' =>'success', 'data' => $drone],202);
+        $drone_id= Drone::where('drone_id', $id)->first();
+
+        if(!$drone_id) {
+            return response()->json(['status' =>'drone id does not exist'], 404);
+        }
+            $drone_id = new ShowDroneRescource($drone_id);
+            return response()->json(['status' =>'success', 'data' => $drone_id],202);
     }
 
     /**
