@@ -21,6 +21,7 @@ class DroneResource extends JsonResource
             'battery' => $this->battery,
             'playload_capacity' => $this->playload_capacity,
             'plan_id' => $this->plan_id,
+            'user_id' => $this->user_id,
         ];
     }
 }
