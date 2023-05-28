@@ -91,11 +91,7 @@ Route::get('/farms/{id}',[FarmController::class, 'show']);
 
 Route::get('/drones',[DroneController::class, 'index']);
 Route::get('/drones/{id}',[DroneController::class, 'show']);
-<<<<<<< HEAD
-Route::get('/show_drone_id/{drone_id}',[DroneController::class, 'getDoneId']);
-=======
-Route::get('/show_locations/{drone_id}/{location_id}',[DroneController::class, 'showLocation']);
->>>>>>> e653dc192d8ccbf8295bd99a24ede99c7eb10476
+Route::get('/show_drone_id/{drone_id}',[DroneController::class, 'getDroneId']);
 
 Route::get('/locations',[LocationController::class, 'index']);
 Route::get('/locations/{id}',[LocationController::class, 'show']);
