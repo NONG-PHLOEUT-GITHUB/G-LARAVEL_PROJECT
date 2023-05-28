@@ -24,6 +24,7 @@ class ShowPlaneRescource extends JsonResource
             'user_id' => $this->user_id,
             'user' => new UserResource($this->user),
             'drones' => DroneResource::collection($this->drones),
+            'instructions' => InstructionResource::collection($this->instructions),
         ];
     }
 }

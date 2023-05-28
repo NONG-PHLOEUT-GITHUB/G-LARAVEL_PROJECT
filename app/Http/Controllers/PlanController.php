@@ -35,6 +35,9 @@ class PlanController extends Controller
     public function show($id)
     {
         $plan = Plan::find($id);
+        if(!$plan){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $plan = new ShowPlaneRescource($plan);
         return response()->json(['status' =>'success', 'plan' => $plan],202);
   
@@ -55,20 +58,23 @@ class PlanController extends Controller
      */
     public function destroy(string $id)
     {
-        $plans = Plan::find($id);
-        $plans->delete();
+        $plan = Plan::find($id);
+        if(!$plan){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
+        $plan->delete();
 
-        return response()->json(['delete success'=>true, 'data'=>$plans],200);
+        return response()->json(['delete success'=>true, 'data'=>$plan],200);
         
     }
 
-    public function showPlanName($planName){
+    public function getPlanName($plan_name){
 
-        $plan = Plan::where('plan_name', $planName)->with('drones','instructions')->first();
-        
+        $plan = Plan::where('plan_name', $plan_name)->with('instructions')->first();
+       
         if (!$plan) {
             return response()->json(['plan not found' => $plan],404);
         }
-        return $plan;
+        return response()->json(['success'=>true, 'data'=>$plan],200);
     }
 }

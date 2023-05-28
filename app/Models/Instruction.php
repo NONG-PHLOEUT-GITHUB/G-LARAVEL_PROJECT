@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Instruction extends Model
 {
     use HasFactory;
-    
+
     protected $hidden = [
         'created_at',
         'updated_at',
@@ -35,8 +35,8 @@ class Instruction extends Model
             'user_id',
     ]);
 
-    if ($id) {
-        $instruction = self::find($id);
+        if ($id) {
+            $instruction = self::find($id);
             if (!$instruction) {
                 return response()->json(['error' => 'Record not found'], 404);
             }
@@ -44,16 +44,15 @@ class Instruction extends Model
         } else {
             $instruction = self::create($instructions);
             $id = $instruction->$id;
-    }
+        }
 
-    return response()->json(['success' => true, 'data' => $instruction], 200);
+        return response()->json(['success' => true, 'data' => $instruction], 200);
     }
     // Relation to drone
     public function drone()
     {
         return $this->belongsTo(Drone::class);
     }
-
     // Relation to plan
     public function plan()
     {

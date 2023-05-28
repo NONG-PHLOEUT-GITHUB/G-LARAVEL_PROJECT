@@ -36,6 +36,9 @@ class LocationController extends Controller
     public function show(string $id)
     {
         $location = Location::find($id);
+        if(!$location){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $location = new ShowLocationRescource($location);
         return response()->json(['status' =>'success', 'location' => $location],202);
     }
@@ -55,6 +58,9 @@ class LocationController extends Controller
     public function destroy(string $id)
     {
         $location = Location::find($id);
+        if(!$location){
+            return response()->json(['message' => 'The record with ID ' . $id . ' was not found.'], 404);
+        }
         $location->delete();
         return response()->json(['delete success'=>true, 'data'=>$location],200);
     }

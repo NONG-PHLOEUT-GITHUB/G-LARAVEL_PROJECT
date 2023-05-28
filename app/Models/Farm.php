@@ -44,7 +44,8 @@ class Farm extends Model
         return response()->json(['success' => true, 'data' => $farm], 200);
     }
     // Relation to user
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
