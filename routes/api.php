@@ -92,6 +92,7 @@ Route::get('/farms/{id}',[FarmController::class, 'show']);
 Route::get('/drones',[DroneController::class, 'index']);
 Route::get('/drones/{id}',[DroneController::class, 'show']);
 Route::get('/show_drone_id/{drone_id}',[DroneController::class, 'getDroneId']);
+Route::get('/show_drone_location/{drone_id}/location',[DroneController::class, 'showDroneLocation']);
 
 Route::get('/locations',[LocationController::class, 'index']);
 Route::get('/locations/{id}',[LocationController::class, 'show']);

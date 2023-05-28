@@ -76,27 +76,27 @@ class DroneController extends Controller
         
     }
 
-    public function showLocation($drone_id , $location_id)
+    public function showDroneLocation($drone_id)
     {
     
         $drone = Drone::where('id', $drone_id)
-            ->whereHas('locations', function ($query) use ($location_id) {
-                $query->where('id', $location_id);
-            })->with('locations')->first();
-
-        if ($drone === null) {
-            return response()->json(['message' => 'The record with ID ' . $drone_id .' or '.$location_id. ' was not found.'], 404);
-        }else{
-            $location = $drone->locations->first();
-            $longitude = $location->longitude;
-            $latitude =  $location->latitude;   
+        ->with('locations')->first();
         
-            return response()->json(['message' => 'success','data'=>[
-                'location_id' => $location_id,
-                'latitude' =>$latitude,
-                'longitude' =>$longitude,
-            ]], 202);
+        if (!$drone) {
+            return response()->json(['message' => 'The record with ID ' . $drone_id. ' was not found.'], 404);
         }
+        
+        $location = $drone->locations->first();
+        $id = $location->id;
+        $longitude = $location->longitude;
+        $latitude =  $location->latitude;   
+    
+        return response()->json(['message' => 'success','data'=>[
+            'id'=>$id,
+            'latitude' =>$latitude,
+            'longitude' =>$longitude,
+        ]], 202);
+       
     
     }
   
