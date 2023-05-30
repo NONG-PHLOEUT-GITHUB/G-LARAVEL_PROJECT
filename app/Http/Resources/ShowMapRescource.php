@@ -19,6 +19,7 @@ class ShowMapRescource extends JsonResource
             'name' => $this->name,
             'image' => $this->image,
             'description' => $this->description,
+            'capture_by_drone' => $this->drone_id,
             'location' =>new LocationRescource($this->location),
             'farms' =>FarmResource::collection($this->farms),
             'drone' =>new DroneResource($this->drone),

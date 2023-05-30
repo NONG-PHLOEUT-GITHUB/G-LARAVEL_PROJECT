@@ -113,3 +113,36 @@ Route::get('/download_map_images/{map_name}/{farm_id}',  [MapController::class,'
 Route::get('/instructions',[InstructionController::class, 'index']);
 Route::get('/instructions/{id}',[InstructionController::class, 'show']);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Route::get('/drones',[DroneController::class, 'index']);
+Route::get('/show_drone_id/{drone_id}',[DroneController::class, 'getDroneId']);
+Route::get('/show_drone_location/{drone_id}/location',[DroneController::class, 'showDroneLocation']);
+Route::get('/maps',[MapController::class,'index']);
+
+///
+
+Route::get('/download_map_images/{map_name}/{farm_id}',  [MapController::class,'downloadMapImage']);
+Route::post('/plans',[PlanController::class,'store']);
+Route::put('/update_instructions/{drone_id}',[DroneController::class,'updateInstruction']);
+Route::delete('/delete_map_images/{map_name}/{farm_id}',  [MapController::class,'deleteMapImage']);
+
+///
+
+Route::get('/instructions',[InstructionController::class, 'index']);
+Route::get('/plans_name/{plan_name}',[PlanController::class,'getPlanName']);
+Route::post('/post_map_images/{map_name}/{farm_id}',  [MapController::class,'addMapImage']);
+Route::put('/drones/{id}',[DroneController::class, 'update']);
+

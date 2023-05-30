@@ -50,7 +50,7 @@ class PlanController extends Controller
     public function update(PlanRequest $request, $id)
     {
         $plans = Plan::store($request, $id);
-        return response()->json(['status' =>'success', 'plans' => $plans],202);
+        return $plans;
     }
 
     /**

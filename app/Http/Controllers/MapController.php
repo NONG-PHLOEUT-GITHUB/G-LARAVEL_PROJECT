@@ -73,13 +73,10 @@ class MapController extends Controller
             ->whereHas('farms', function ($query) use ($farm_id) {
                 $query->where('id', $farm_id);
             })
-            ->with(['farms' => function ($query) use ($farm_id) {
-                $query->where('id', $farm_id);
-            }])
             ->first();
 
         if ($map === null) {
-            return response()->json(['message' => 'The record with ID ' . $map_name .' or '. $farm_id. ' was not found.'], 404);
+            return response()->json(['message' => 'The record with maps name ' . $map_name .' or ID '. $farm_id. ' was not found.'], 404);
         } else {
             return response()->json(['status' => 'success', 'image' => $map->image], 202);
         }
@@ -94,13 +91,10 @@ class MapController extends Controller
             ->whereHas('farms', function ($query) use ($farm_id) {
                 $query->where('id', $farm_id);
             })
-            ->with(['farms' => function ($query) use ($farm_id) {
-                $query->where('id', $farm_id);
-            }])
             ->first();
 
         if ($map === null) {
-            return response()->json(['message' => 'The record with ID ' . $map_name .' or '. $farm_id. ' was not found.'], 404);
+            return response()->json(['message' => 'The record with maps name ' . $map_name .' or ID '. $farm_id. ' was not found.'], 404);
         } else {
             $map->image = null;
             $map->save();
@@ -115,13 +109,11 @@ class MapController extends Controller
         $map = Map::where('name', $map_name)
             ->whereHas('farms', function ($query) use ($farm_id) {
                 $query->where('id', $farm_id);
-            })->with(['farms' => function ($query) use ($farm_id) {
-                $query->where('id', $farm_id);
-            }])
+            })
             ->first();
 
         if (!$map) {
-            return response()->json(['message' => 'The record with ID ' . $map_name .' or '. $farm_id. ' was not found.'], 404);
+            return response()->json(['message' => 'The record with maps name ' . $map_name .' or ID '. $farm_id. ' was not found.'], 404);
         }
 
         $map->image = $request->input('image');
